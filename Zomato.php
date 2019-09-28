@@ -2,8 +2,9 @@
 
 /**
  * This class is a prototype that may be used for working with the Zomato API
+ * 
  * @author Isaac Taylor, ...
- * Updated: 9/21/2019
+ *  Updated: 9/21/2019
  */
 class Zomato {
 
@@ -15,10 +16,14 @@ class Zomato {
     private $apiKey;
 
     /**
-     * This is the constructor for a Zomato object.
+     * This is the constructor for a Zomato Object
+     * 
+     * @param $_requestUrl -  url where zomato data is being stored
+     * @param $_apiKey -  required api key from zomato
+     * @throws Exception when $_requestUrl or $_apiKey are empty;
      */
-    function __construct($_requestUrl, $_apiKey) {
-        //checks if required parameters are empty and throws an error if they are
+    function __construct($_requestUrl, $_apiKey, $_resId = null) {
+        //Checks if required parameters are empty and throws an error if they are
         if (!empty($_requestUrl) && !empty($_apiKey)) {
             $this->requestUrl = $_requestUrl;
             $this->apiKey = $_apiKey;
@@ -31,22 +36,22 @@ class Zomato {
      * This function extracts json info from the requested url and sets it as this objects content.
      */
     private function RequestInfo() {
-        // Initialize a CURL session to prepare for transferring data.
+        //Initialize a CURL session to prepare for transferring data.
         $InitializerCurl = curl_init();
-        // Turns on the option for returning the  contents of the url.
+        //Turns on the option for returning the  contents of the url.
         curl_setopt($InitializerCurl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($InitializerCurl, CURLOPT_HTTPHEADER, array('Accept: application/json', 'user-key: ' . $this->apiKey, $this->requestUrl));
         //Takes the url and passes it as a parameter to InitializerCurl.
         curl_setopt($InitializerCurl, CURLOPT_URL, $this->requestUrl);
-
         //Stores the the content collected from the url.
         $result = curl_exec($InitializerCurl);
-        // turns the json string result into an array an stores it in content
+        //Turns the json string result into an array an stores it in content
         $this->content = json_decode($result, true);
     }
 
     /**
-     * This function finds and returns values found in a json array.
+     * This function finds and returns all values found  by key in a json array.
+     * 
      * @param $_content - a json array
      * @param $_requestCollection - an array of keys whose values are being requested
      * @return $results - an array containing tuples of requested keys
@@ -75,6 +80,7 @@ class Zomato {
 
     /**
      *  This function returns an array of commonly requested info from Zomato
+     * 
      * @return type String array of common, general, queries
      */
     public function getCommonQueries() {
@@ -83,6 +89,7 @@ class Zomato {
 
     /**
      * This function returns a the url containing data for a Zomato object
+     * 
      * @return $this->requestUrl -  the url containing this objects json data
      */
     public function getRequestUrl() {
@@ -91,6 +98,7 @@ class Zomato {
 
     /**
      * This function returns the json content this object is working with
+     * 
      * @return $this->content -  the most recent json data this object has requested
      */
     public function getContent() {
@@ -101,6 +109,7 @@ class Zomato {
 
     /**
      * This function sets the requestUrl to a new url
+     * 
      * @param $_newRequestUrl - new request url where data can be found
      */
     public function setRequestUrl($_newRequestUrl) {

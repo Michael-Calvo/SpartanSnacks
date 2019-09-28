@@ -25,6 +25,7 @@
           This search is only goint to return 3 items.
          */
         $zomatoRequest->setRequestUrl("https://developers.zomato.com/api/v2.1/search?q=Piedmont%20Triad&count=3");
+        // $zomatoRequest->setRequestUrl("https://developers.zomato.com/api/v2.1/cuisines?city_id=904");
         print_r($zomatoRequest->getContent());
         echo "<br>";
         //getting specific data from json array
@@ -32,10 +33,11 @@
         $json = $zomatoRequest->getContent();
         $resData = $json['restaurants'];
         //storing names and id's in
-        $values = array('name', 'id');
+        $values = array('id');
         $namesIds = $zomatoRequest->jParser($resData, $values);
         //displaying array of restaurants paired with their id's
         print_r($namesIds);
         ?>
+
     </body>
 </html>
