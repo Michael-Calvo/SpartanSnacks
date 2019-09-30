@@ -22,11 +22,11 @@ class Zomato {
      * @param $_apiKey -  required api key from zomato
      * @throws Exception when $_requestUrl or $_apiKey are empty;
      */
-    function __construct($_requestUrl, $_apiKey, $_resId = null) {
+    function __construct($_requestUrl, $_apiKey) {
         //Checks if required parameters are empty and throws an error if they are
         if (!empty($_requestUrl) && !empty($_apiKey)) {
-            $this->requestUrl = $_requestUrl;
             $this->apiKey = $_apiKey;
+            $this->setRequestUrl($_requestUrl);
         } else {
             throw new Exception("Empty Request Url and/or Empty Api Key");
         }
