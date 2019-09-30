@@ -13,8 +13,8 @@
         include "Zomato.php";
         include 'Restaurant.php';
         //Error will be thrown if no api key is given
-        $apiKey = 'cf64d9f9aa1cd2e3b7c5bbf60f896a44';
-        //a Zomato object is created 
+        $apiKey = '';
+        //a Zomato object is created
         $zomatoRequest = new Zomato("https://developers.zomato.com/api/v2.1/search?q=Piedmont%20Triad&count=9", $apiKey);
         $resData = $zomatoRequest->getContent()['restaurants'];
         $values = array('id');
