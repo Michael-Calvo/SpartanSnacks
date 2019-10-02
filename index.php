@@ -10,7 +10,7 @@
     </head>
     <body>
         <?php
-        //Example of the Zomato class being used
+        
         include "Zomato.php";
         include 'Restaurant.php';
         //Error will be thrown if no api key is given
