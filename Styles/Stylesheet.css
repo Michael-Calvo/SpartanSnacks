@@ -67,7 +67,8 @@ footer
     text-align: center;
     color: #fff;
     text-shadow: 0.1em 0.1em #333;
-    background-image: url(../Images/background.png);
+    background-image: url(../Images/Darkwood.jpg);
+    background-size: cover;
 }
 
 /*Determines style and size of navagation bar where user clicks to direct to other page*/
@@ -77,7 +78,8 @@ footer
     border: 3px solid #E3E3E3;
     margin-top: 20px;
     text-shadow: 0.1em 0.1em #333;
-    background-image: url(../Images/background.png);
+    background-image: url(../Images/Darkwood.jpg);
+    background-size: cover;
 }
 
 
@@ -118,5 +120,5 @@ footer
 /*determines color of font in nav*/
 #nav a:hover
 {
-    color: pink;
+    color: lightblue;
 }
