@@ -1,55 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <?php
-    include 'Head.php';
-    ?>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title><?php echo $title; ?></title>
+        <link rel="stylesheet" type="text/css" href="Styles/Stylesheet.css" />
+    </head>
     <body>
         <div id="wrapper">
             <div id="banner">                
             </div>
-            <?php
-            include 'MainNavigation.php';
-            ?>
-            <div id="content_area"> 
-                <center>
-                    <h4 class="ml2">
-                        <?php
-                        echo $content;
-                        ?>  
-                    </h4>
-                </center>
-                <center>
-                    <br>
-                    <div id="scroller" style="width:300px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;">
-                        <form class="form-inline">
-                            <script type="text/javascript" src="Javascript/Animate.js"></script>
-                            <?php
-                            include 'ViewCuisine.php';
-                            //example (not actual cuisine list)
-                            $listOfAllCuisines = array('Mexican', 'Chinese', 'Italian', 'Mexican',
-                                'Chinese', 'Mexican', 'Chinese', 'Italian', 'Mexican',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Chinese', 'Italian');
-
-                            listCuisines($listOfAllCuisines);
-                            ?>
-
-                        </form>
-                    </div>
-                </center>
+            
+            <nav id ="navigation">
+                <ul id="nav">
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">Restaurants</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>    
+            </nav>
+            
+            <div id="content_area">
+                <?php echo $content; ?>
             </div>
-
+            
             <div id="sidebar"> 
-
+                
             </div>
-
-            <?php
-            include 'Footer.php';
-            ?>
+            
+            <footer>
+                <p>SpartanSnacks</p>
+            </footer>   
         </div>    
     </body>
 </html>
-

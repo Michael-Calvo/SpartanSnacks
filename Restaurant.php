@@ -29,7 +29,7 @@ class Restaurant extends Zomato {
      */
     public function __construct($_requestUrl, $_apiKey, $_resId) {
         parent::__construct($_requestUrl, $_apiKey);
-        if ($_resId == null) {
+        if($_resId == null){
             throw new Exception("Restaurant id must be provided");
         }
         $this->setResId($_resId);
