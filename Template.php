@@ -26,13 +26,13 @@
                             <?php
                             include 'ViewCuisine.php';
                             //example (not actual cuisine list)
-                            $listOfAllCuisines = array('Mexican', 'Chinese', 'Italian', 'Mexican',
-                                'Chinese', 'Mexican', 'Chinese', 'Italian', 'Mexican',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Mexican', 'Chinese', 'Italian', 'Mexican', 'Chinese',
-                                'Chinese', 'Italian');
+                            $listOfAllCuisines = array('African', 'American', 'Asian', 'BBQ',
+                                'Bakery', 'Brazilian', 'Cafe', 'Carribbean', 'Chinese',
+                                'Cuban', 'Deli', 'Desserts', 'Ethiopian', 'European',
+                                'French', 'German', 'Greek', 'Indian', 'International',
+                                'Italian', 'Japanese', 'Korean', 'Mediterranean', 'Mexican',
+                                'Middle Eastern', 'Puerto Rican', 'Ramen', 'Seafood', 'South American',
+                                'Southern', 'Sushi', 'Taco', 'Taiwanese', 'Thai', 'Vegetarian', 'Vietnamese');
 
                             listCuisines($listOfAllCuisines);
                             ?>
