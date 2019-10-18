@@ -5,6 +5,7 @@
  *
  * @author <your name(s)> Updated on: 9/28/2019
  */
+
 class Restaurant extends Zomato {
 
     private $_resId;
