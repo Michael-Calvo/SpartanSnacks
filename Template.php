@@ -20,25 +20,31 @@
                 </center>
                 <center>
                     <br>
-                    <div id="scroller" style="width:300px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;">
-                        <form class="form-inline">
+                    <div class="inline">
+
+                        <div id="scroller" style="width:300px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
                             <script type="text/javascript" src="Javascript/Animate.js"></script>
-                            <?php
-                            include 'ViewCuisine.php';
-                            //example (not actual cuisine list)
-                            $listOfAllCuisines = array('African', 'American', 'Asian', 'BBQ',
-                                'Bakery', 'Brazilian', 'Cafe', 'Carribbean', 'Chinese',
-                                'Cuban', 'Deli', 'Desserts', 'Ethiopian', 'European',
-                                'French', 'German', 'Greek', 'Indian', 'International',
-                                'Italian', 'Japanese', 'Korean', 'Mediterranean', 'Mexican',
-                                'Middle Eastern', 'Puerto Rican', 'Ramen', 'Seafood', 'South American',
-                                'Southern', 'Sushi', 'Taco', 'Taiwanese', 'Thai', 'Vegetarian', 'Vietnamese');
+                            <form class="form-inline" method="post" name="checkForm">
+                                
+                                <?php
+                                foreach ($cusNames as $item) {
 
-                            listCuisines($listOfAllCuisines);
-                            ?>
+                                    echo "
+                                    <div class='form-check form-check-inline'>
+                                        <input class='form-check-input' type='checkbox' id='inlineCheckbox' value='$item' name='checkboxArray[]'>
+                                        <label class='form-check-label' for='inlineCheckbox'>$item</label>
+                                    </div>";
+                                }
+                                ?>
+                                
+                            </form>
 
-                        </form>
+                        </div>
+
                     </div>
+<?php
+include 'AdditionalFilters.php';
+?>
                 </center>
             </div>
 
@@ -46,9 +52,9 @@
 
             </div>
 
-            <?php
-            include 'Footer.php';
-            ?>
+<?php
+include 'Footer.php';
+?>
         </div>    
     </body>
 </html>

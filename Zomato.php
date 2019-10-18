@@ -9,11 +9,10 @@
 class Zomato {
 
     private $content;
-    private $commonQueries = array('categories', 'cities', 'collections',
-        'cuisines', 'dailymenu', 'establishments', 'geocode', 'location_details', 'locations'
-        , 'restaurant', 'reviews', 'search');
     private $requestUrl;
-    private $apiKey;
+
+    const API_KEY = "KEY";
+    const CITY_ID = "ID";
 
     /**
      * This is the constructor for a Zomato Object
@@ -35,7 +34,7 @@ class Zomato {
     /**
      * This function extracts json info from the requested url and sets it as this objects content.
      */
-    private function RequestInfo() {
+    private function requestInfo() {
         //Initialize a CURL session to prepare for transferring data.
         $InitializerCurl = curl_init();
         //Turns on the option for returning the  contents of the url.
@@ -46,7 +45,8 @@ class Zomato {
         //Stores the the content collected from the url.
         $result = curl_exec($InitializerCurl);
         //Turns the json string result into an array an stores it in content
-        $this->content = json_decode($result, true);
+        //$this->content = json_decode($result, true);
+        $this->content = json_decode($result);
     }
 
     /**
@@ -56,7 +56,7 @@ class Zomato {
      * @param $_requestCollection - an array of keys whose values are being requested
      * @return $results - an array containing tuples of requested keys
      */
-    public function jParser($_content, $_requestCollection) {
+    public function jParser($_content) {
         $results = array();
         foreach ($_content as $item) {
             $tuple = array();
@@ -74,6 +74,18 @@ class Zomato {
             }
         }
         return $results;
+    }
+
+    /**
+     * This function sets the requestUrl to a new url
+     * 
+     * @param $_newRequestUrl - new request url where data can be found
+     */
+    public function setRequestUrl($_newRequestUrl) {
+        if (!empty($_newRequestUrl)) {
+            $this->requestUrl = $_newRequestUrl;
+            $this->requestInfo();
+        }
     }
 
 //========================= GETTERS ============================================
@@ -106,17 +118,4 @@ class Zomato {
     }
 
 //========================= SETTERS ============================================
-
-    /**
-     * This function sets the requestUrl to a new url
-     * 
-     * @param $_newRequestUrl - new request url where data can be found
-     */
-    public function setRequestUrl($_newRequestUrl) {
-        if (!empty($_newRequestUrl)) {
-            $this->requestUrl = $_newRequestUrl;
-            $this->RequestInfo();
-        }
-    }
-
 }
