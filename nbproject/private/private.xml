@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Head.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Styles/filterSubmit.css</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/ViewCuisine.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Restaurant.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Template.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/UserClass.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/ViewRestaurant.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/ZomatoAPI.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/index.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/AdditionalFilters.php</file>
+        </group>
     </open-files>
 </project-private>

@@ -24,8 +24,9 @@
 
                         <div id="scroller" style="width:300px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
                             <script type="text/javascript" src="Javascript/Animate.js"></script>
-                            <form class="form-inline" method="post" name="checkForm">
-                                
+
+                            <form class="form-inline" name="checkForm" method="post" action="SubmitRestaurantRequest.php">
+
                                 <?php
                                 foreach ($cusNames as $item) {
 
@@ -36,15 +37,30 @@
                                     </div>";
                                 }
                                 ?>
-                                
+
                             </form>
+                           
+                            <?php 
+                                
+                            /*
+                              if (empty($mainForm)) {
+                              echo("You didn't select any cuisines.");
+                              } else {
+                              $n = count($mainForm);
+
+
+                              for ($i = 0; $i < $n; $i++) {
+                              echo($mainForm[$i] . " ");
+                              }
+                              } */
+                            ?>
 
                         </div>
 
                     </div>
-<?php
-include 'AdditionalFilters.php';
-?>
+                    <?php
+                    include 'AdditionalFilters.php';
+                    ?>
                 </center>
             </div>
 
@@ -52,9 +68,9 @@ include 'AdditionalFilters.php';
 
             </div>
 
-<?php
-include 'Footer.php';
-?>
+            <?php
+            include 'Footer.php';
+            ?>
         </div>    
     </body>
 </html>

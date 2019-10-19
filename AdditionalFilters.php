@@ -1,8 +1,24 @@
 <?php ?>
 
 <link rel="stylesheet" type="text/css" href="Styles/filterSubmit.css">
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+    function submitBoth() {
+
+        // document.getElementById("filterForm").submit();
+        document.getElementById("checkboxForm").submit();
+
+    }
+</script>
+
 <div  id="myForm">
-    <form action="SubmitRestaurantRequest.php" class="form-container" method="post" id="filterForm">
+    <form class="form-container" action="SubmitRestaurantRequest.php" id="filterForm" method="post">
         <h5><center>Additional Filters</center></h5>
         <h6><center>Feel free to fine tune your results!</center></h6>
 
@@ -24,20 +40,6 @@
             <option value="three">Within 15 miles</option>
         </select>
 
-        <button type="submit" class="btn" onclick="submitForms()">Go!</button>
-        <button type="button" class="btn cancel" >Extra Button</button>
+        <button  type="button" class="btn" onclick="submitBoth()">Go!</button>
     </form>
 </div>
-<script>
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-    }
-
-    function closeForm() {
-        document.getElementById("myForm").style.display = "none";
-    }
-    document.getElementById("submit").onclick = function () {
-        document.getElementById("checkboxForm").submit();
-        document.getElementById("filterForm").submit();
-    }
-</script>

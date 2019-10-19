@@ -3,10 +3,10 @@
 /**
  * This class represents a Restaurant object and its information.
  *
- * @author <your name(s)> Updated on: 9/28/2019
+ * @author <your name(s)> Updated on: 10/19/2019
  */
 
-class Restaurant extends Zomato {
+class Restaurant {
 
     private $_resId;
     private $resId;
@@ -44,15 +44,7 @@ class Restaurant extends Zomato {
      * @param $_key - a key that a value can be accessed by
      */
     public function findValueById($_key) {
-        $requestedValues = array('id', $_key);
-        $json = $this->getContent();
-        $idsAndValues = $this->jParser($json['restaurants'], $requestedValues);
-        foreach ($idsAndValues as $item) {
-            if ($item[0] == $this->getResId()) {
-                return $item[1];
-            }
-        }
-        return "Info currently not available";
+       
     }
 
     /**
@@ -75,9 +67,7 @@ class Restaurant extends Zomato {
      * This function calls every setter to set all the Restaurant fields
      */
     public function setAllFields() {
-        $this->setName($this->findValueById('name'));
-        //will remove once method is completed 
-        throw new Exception("Incomplete Method");
+       
     }
 
     //========================= GETTERS ============================================
