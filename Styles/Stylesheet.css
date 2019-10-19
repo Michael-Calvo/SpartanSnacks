@@ -1,4 +1,5 @@
-/*This file contructs the style of the website design*/
+/*This file contructs the style of the website design
+author @ Harinder Badesha*/
 
 /*determines font style of the website*/
 body
@@ -122,6 +123,8 @@ footer
 {
     color: lightblue;
 }
+
+
 
 .ml2 {
   font-weight: 400;
