@@ -38,8 +38,7 @@
             <option value="four">Within 10 miles</option>
             <option value="three">Within 15 miles</option>
         </select>
-
-        <button type="submit" class="btn" onclick="submitForms()">Go!</button>
-        <button type="button" class="btn cancel" >Extra Button</button>
+  
+        <button type="button" class="btn" onclick ="submitBoth()">Go!</button>
     </form>
 </div>
