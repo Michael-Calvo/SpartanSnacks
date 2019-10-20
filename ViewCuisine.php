@@ -15,4 +15,5 @@ function listCuisines($_cuisineArray) {
         </div>";        
     }
 }
+
 ?>

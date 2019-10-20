@@ -25,14 +25,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Add styles to the form container */
 .form-container {
-    
-    position: relative;
-    padding: px;
-    max-height: 360px;
-    max-width: 360px;
-    left: 55%;
-    top: 50%;
-    transform: translate(-85%, 30%);
+        position: relative;
+        padding: px;
+        max-height: 360px;
+        max-width: 360px;
+        left: 55%;
+        top: 50%;
+        transform: translate(-85%, 30%);
 
 }
 
@@ -53,7 +52,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-    position: absolute; top: 200; right: -55px;
+    position: absolute; top: 170; right: -55px;
     background-color: #4CAF50;
     color: white;
     padding: 5px 20px;

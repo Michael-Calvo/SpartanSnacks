@@ -40,7 +40,9 @@ class ZomatoAdapter implements APIAdapterInterface {
     public function getCuisineIdPairs() {
         $this->zomato->setAndRequest(ZomatoAPI::CUISINE_URL);
         return $this->zomato->jParser('cuisines', $this->zomato->getContent());
+        echo $name['African'];
     }
+    
 
     /**
      * This function returns a restaurant when given a valid restaurant id

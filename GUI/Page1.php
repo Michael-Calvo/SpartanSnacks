@@ -1,5 +1,5 @@
-<!--Page1 of website that gives users option to choose cuisines and filter it
-to reviews and distance.
+<!--Page1 of website or "Home page". this gives users option 
+to choose cuisines and filter it to reviews and distance.
 
 authors @ Badesha, Taylor
 -->
@@ -47,17 +47,32 @@ authors @ Badesha, Taylor
                                 }
                                 ?>
                             </form>
+                            <?php 
+                                
+                            /*
+                              if (empty($mainForm)) {
+                              echo("You didn't select any cuisines.");
+                              } else {
+                              $n = count($mainForm);
+                              for ($i = 0; $i < $n; $i++) {
+                              echo($mainForm[$i] . " ");
+                              }
+                              } */
+                            ?>
                         </div>
                     </div>
-                    <?php
+                     <?php
                     include 'AdditionalFilters.php';
-                    ?>
+                     ?> 
                 </center>
             </div>
+            
             <div id="sidebar"> </div>
+            
             <?php
             include 'Footer.php';
             ?>
+            
         </div>    
     </body>
 </html>

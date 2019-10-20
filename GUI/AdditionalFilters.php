@@ -1,3 +1,8 @@
+<!--This GUI develops the additional filters box which gives user the option
+to choose their restaurant choosing based on ratings and distance. 
+
+authors @ Taylor
+-->
 <?php ?>
 
 <link rel="stylesheet" type="text/css" href="Styles/filterSubmit.css">

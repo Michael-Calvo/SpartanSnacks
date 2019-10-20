@@ -13,4 +13,7 @@ interface APIAdapterInterface {
     public function getRestaurantById($_resID);
 
     public function getRestaurantsByAvgRating($_minRating);
+    
 }
+
+
