@@ -1,5 +1,11 @@
+<!--Page1 of website or "Home page." This gives users the option to 
+choose cuisines and filter it to reviews and distance.
+
+author @ Badesha, Taylor
+-->
 <!DOCTYPE html>
 <html>
+    <!-- includes the head.php which includes base format of website-->
     <?php
     include 'Head.php';
     ?>
@@ -7,6 +13,10 @@
         <div id="wrapper">
             <div id="banner">                
             </div>
+            <!-- includes the main navigation where users clicks buttons as 
+            "home" or "about."
+            -->
+
             <?php
             include 'MainNavigation.php';
             ?>
@@ -22,11 +32,13 @@
                     <br>
                     <div class="inline">
 
-                        <div id="scroller" style="width:300px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
-                            <script type="text/javascript" src="Javascript/Animate.js"></script>
-                            <form class="form-inline" method="post" name="checkForm">
+                        <script type="text/javascript" src="Javascript/Animate.js"></script>
+
+                        <form name="checkForm" method="post" action="FormControl/SubmissionCatcher.php">
+                            <div id="scroller" style="width:300px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
                                 
                                 <?php
+                                //This code prints out checkboxes
                                 foreach ($cusNames as $item) {
 
                                     echo "
@@ -36,15 +48,14 @@
                                     </div>";
                                 }
                                 ?>
-                                
-                            </form>
-
-                        </div>
+                            </div>
+                            <?php
+                            include 'AdditionalFilters.php';
+                            ?>
+                        </form>
 
                     </div>
-<?php
-include 'AdditionalFilters.php';
-?>
+
                 </center>
             </div>
 
@@ -52,9 +63,9 @@ include 'AdditionalFilters.php';
 
             </div>
 
-<?php
-include 'Footer.php';
-?>
+            <?php
+            include 'Footer.php';
+            ?>
         </div>    
     </body>
 </html>

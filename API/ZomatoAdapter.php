@@ -43,12 +43,25 @@ class ZomatoAdapter implements APIAdapterInterface {
     }
 
     /**
-     * This function returns a restaurant when given a valid restaurant id
+     * This function returns an array of restaurants when given an array of restaurant ids
      * 
      * @param type $_resID - the restaurants id
      */
     public function getRestaurantById($_resID) {
-        
+        $urlFirstHalf = "https://developers.zomato.com/api/v2.1/search?entity_id=" . ZomatoApi::DEFAULT_CITY_ID;
+        $urlSecondHalf = "&entity_type=city&cuisines=";
+        $count = 0;
+        if (is_array($_resID)) {
+            foreach ($_resID as $id) {
+                if ($count < 1) {
+                    $urlSecondHalf += "$id%2C";
+                } else {
+                    $urlSecondHalf += "%20" . $id;
+                }
+                $count++;
+            }
+            $this->zomato->setAndRequest($urlFirstHalf + $urlSecondHalf);
+        }
     }
 
     /**
