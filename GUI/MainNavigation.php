@@ -9,7 +9,7 @@ Updated: 10/20/2019
         <ul id="nav">
             <li><a href="index.php">Home</a></li>
             <li><a href="#">Restaurants</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="Aboutpage.php">About</a></li>
         </ul>    
     </nav>
 
