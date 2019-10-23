@@ -3,6 +3,12 @@
 include_once "ZomatoAPI.php";
 include_once "APIAdapterInterface.php";
 
+/**
+ * This class is connects to the zomato api 
+ * 
+ * @author Isaac Taylor, ...
+ *  Updated: 10/23/2019
+ */
 class ZomatoAdapter implements APIAdapterInterface {
 
     private $zomato;
@@ -48,20 +54,7 @@ class ZomatoAdapter implements APIAdapterInterface {
      * @param type $_resID - the restaurants id
      */
     public function getRestaurantById($_resID) {
-        $urlFirstHalf = "https://developers.zomato.com/api/v2.1/search?entity_id=" . ZomatoApi::DEFAULT_CITY_ID;
-        $urlSecondHalf = "&entity_type=city&cuisines=";
-        $count = 0;
-        if (is_array($_resID)) {
-            foreach ($_resID as $id) {
-                if ($count < 1) {
-                    $urlSecondHalf += "$id%2C";
-                } else {
-                    $urlSecondHalf += "%20" . $id;
-                }
-                $count++;
-            }
-            $this->zomato->setAndRequest($urlFirstHalf + $urlSecondHalf);
-        }
+        
     }
 
     /**
@@ -79,7 +72,23 @@ class ZomatoAdapter implements APIAdapterInterface {
      * @param type $_arrayOfCuisineIds
      */
     public function getRestaurantsByCuisineId($_arrayOfCuisineIds) {
-        
+        //METHOD DEVELOPED BUT NOT YET TESTED
+        $urlFirstHalf = "https://developers.zomato.com/api/v2.1/search?entity_id=" . ZomatoApi::DEFAULT_CITY_ID;
+        $urlSecondHalf = "&entity_type=city&cuisines=";
+        $count = 0;
+        if (is_array($_arrayOfCuisineIds)) {
+            //looping through ids and adding them to url query in format that zomato requires
+            foreach ($_arrayOfCuisineIds as $id) {
+                if ($count < 1) {
+                    $urlSecondHalf += "$id%2C";
+                } else {
+                    $urlSecondHalf += "%20" . $id;
+                }
+                $count++;
+            }
+            $this->zomato->setAndRequest($urlFirstHalf + $urlSecondHalf);
+        }
+        return $this->zomato->jParser('restaurant', $this->zomato->getContent());
     }
 
     /**
