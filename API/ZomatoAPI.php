@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * This is an API that works through the Zomato service.
+ * 
+ * @author Isaac Taylor, ...
+ *  Updated: 10/21/2019
+ */
 class ZomatoApi {
 
     const API_KEY = 'cf64d9f9aa1cd2e3b7c5bbf60f896a44';
@@ -57,8 +63,8 @@ class ZomatoApi {
         }
     }
 
-    public static function setAndRequest($url) {
-        self::$requestUrl = $url;
+    public static function setAndRequest($_url) {
+        self::$requestUrl = $_url;
         self::requestInfo();
     }
 
