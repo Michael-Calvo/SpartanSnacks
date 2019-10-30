@@ -1,13 +1,15 @@
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <?php
+$homeUrl = '/index.php';
 require_once'API/ZomatoAdapter.php';
-$title = "Home";
+$title = "SpartanSnacks - Restaurant Finder";
 $content = "Welcome to SpartanSnacks!";
-//quick test
+//connect to ZomatoApi using the ZomatoAdapter
 $forCuisines = new ZomatoAdapter(new ZomatoApi());
+//array of cusine names for displaying in HomeView
 $cusNames = $forCuisines->getCuisineNames();
-//end test
-include 'GUI/HomeView.php';
-?>
+//array of cusine ids for setting html checkbox values
+$idValues = $forCuisines->getCuisineIds();
+include 'Views/HomeView.php';

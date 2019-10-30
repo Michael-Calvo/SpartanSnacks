@@ -4,19 +4,37 @@
  * This is an API that works through the Zomato service.
  * 
  * @author Isaac Taylor, ...
- *  Updated: 10/21/2019
+ *  Updated: 10/27/2019
  */
 class ZomatoApi {
 
     const API_KEY = 'cf64d9f9aa1cd2e3b7c5bbf60f896a44';
-    const DEFAULT_CITY_ID = 904;
-    const CUISINE_URL = 'https://developers.zomato.com/api/v2.1/cuisines?city_id=' . self::DEFAULT_CITY_ID;
+    //Piedmont Triad
+    const CITY_ID = 904;
+    //Greensboro subzone id & latitude and longitude
+    const ENTITY_TYPE = "subzone&lat";
+    const SUBZONE_ID = 133765;
+    const LATITUDE = 36.0863000000;
+    const LONGITUDE = -79.8273000000;
+    //Maximum radius in miles away from Greensboro
+    const MAX_DISTANCE = 20;
+    // maximum rating a restaurant can have
+    const MAX_RATING = 5;
+    // ratio of meters to one mile
+    const MILES_AS_METERS = 1609.344;
+    const CUISINE_URL = 'https://developers.zomato.com/api/v2.1/cuisines?city_id=' . self::CITY_ID . "";
+    //using associative array for enum like behavior for distances in miles
+    const DISTANCES = array("Within 5 miles" => 5, "Within 10 miles" => 10, "Within 15 miles" => 15,
+        "Any Distance" => self::MAX_DISTANCE);
+    //using associative array for enum like behavior for ratings
+    const RATINGS = array("5/5 only" => self::MAX_RATING, "4/5 or better" => 4, "3/5 or better" => 3,
+        "Any Rating" => 1);
 
     private static $requestUrl;
     private static $content;
 
     /**
-     * This is the constructor for a Zomato Object
+     * This is the constructor for a ZomatoAPI
      * 
      * @throws Exception when the CUISINE_URL or API_KEY is empty;
 
@@ -48,7 +66,7 @@ class ZomatoApi {
     }
 
     /**
-     * This function recursively finds and returns a value by key in an array called 
+     * This function recursively finds and returns a value by key in an array 
      * @param type $_key - the key 
      * @param type $_content  - an array 
      * @return the value if found
@@ -63,6 +81,10 @@ class ZomatoApi {
         }
     }
 
+    /**
+     * This function takes sets the data request url
+     * @param string $_url
+     */
     public static function setAndRequest($_url) {
         self::$requestUrl = $_url;
         self::requestInfo();

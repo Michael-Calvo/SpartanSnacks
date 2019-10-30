@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/ZomatoAdapter.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Template.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/SubmissionCatcher.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/index.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/APIAdapterInterface.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Controllers/SubmissionCatcher.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Models/RestaurantModel.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Controllers/RestaurantController.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Models/UserClass.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Views/RestaurantView.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Views/Page2.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGitHub/Views/HomeView.php</file>
         </group>
     </open-files>
 </project-private>

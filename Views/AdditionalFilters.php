@@ -1,4 +1,4 @@
-<!-- THis GUI develops the additional filters box which gives users the option to 
+<!-- This file displays the additional filters box which gives users the option to 
 choose their restaurant choosing based on ratings and distance.
 
 author @ Isaac Taylor
@@ -17,7 +17,6 @@ Updated: 10/23/2019
         <option value="4/5 or better">4/5 or better</option>
         <option value="3/5 or better">3/5 or better</option>
         <option value="2/5 or better">2/5 or better</option>
-        <option value="1/5 or better">1/5 or better</option>
     </select><br><br>
 
     <label for="distance"><b>By Distance:</b></label>

@@ -1,3 +1,4 @@
+//Welcome to SpartanSnacks animation
 // Wrap every letter in a span
 var textWrapper = document.querySelector('.ml2');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
