@@ -7,5 +7,21 @@
  * @author 
  */
 class RestaurantController {
-    //put your code here
+
+    public $restaurantModel;
+    public $rating;
+    public $distance;
+    public $cuisine;
+    public function __construct($rating, $distance, $cuisineCB) {
+        $this->restaurantModel = new RestaurantModel();
+    }
+
+    public function invoke() {
+        // let the model interact with the data and database
+    }
+    
+    public function loadView() {
+        
+    }
+
 }

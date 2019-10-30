@@ -6,8 +6,8 @@ Updated: 10/25/2019
 -->
 <html>
     <head>
-          <link rel="stylesheet" type="text/css" href="../Styles/Stylesheet.css" />
-    <link rel="stylesheet" type="text/css" href="../Styles/RestaurantViewStyle.css" />
+        <link rel="stylesheet" type="text/css" href="../Styles/Stylesheet.css" />
+        <link rel="stylesheet" type="text/css" href="../Styles/RestaurantViewStyle.css" />
     </head>
 
     <body>

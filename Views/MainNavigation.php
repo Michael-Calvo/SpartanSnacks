@@ -18,8 +18,7 @@ Updated: 10/25/2019
             echo "<li><a href='../index.php'>Home</a></li>";
         }
         ?>
-        <li><a href="#">Restaurants</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="/Views/Aboutpage.php">About</a></li>
     </ul>    
 </nav>
 

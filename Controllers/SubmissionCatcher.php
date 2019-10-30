@@ -19,9 +19,10 @@ if (isset($_POST['selectDistance'])) {
 if (isset($_POST['checkboxArray'])) {
     $cuisineCB = $_POST['checkboxArray'];
 }
-//if (isset($_POST['idValues'])) {
-    $ids = array(1,2,3);//$_POST['idValues'];
-//}
+
+//creates restaurant controller
+$controller = new RestaurantController($rating, $distance, $cuisineCB);
+
 if (empty($cuisineCB)) {
     // redirect to index if no cuisine was selected before the form was submitted
     echo "<form id='invalidForm' action='../index.php' method='post'>

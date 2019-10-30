@@ -13,4 +13,3 @@ $cusNames = $forCuisines->getCuisineNames();
 //array of cusine ids for setting html checkbox values
 $idValues = $forCuisines->getCuisineIds();
 include 'Views/HomeView.php';
-?>
