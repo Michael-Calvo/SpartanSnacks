@@ -114,6 +114,7 @@ class ZomatoAdapter implements APIAdapterInterface {
      */
     public function getRestaurantsByAvgRating($_minRating) {
         throw new Exception('This method has not been implemented yet');
+       
     }
 
 }

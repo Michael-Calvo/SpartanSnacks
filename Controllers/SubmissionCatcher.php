@@ -21,7 +21,7 @@ if (isset($_POST['checkboxArray'])) {
 }
 
 //creates restaurant controller
-$controller = new RestaurantController($rating, $distance, $cuisineCB);
+//$controller = new RestaurantController($rating, $distance, $cuisineCB);
 
 if (empty($cuisineCB)) {
     // redirect to index if no cuisine was selected before the form was submitted

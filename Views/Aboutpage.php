@@ -4,5 +4,5 @@
 </head>
 <?php
 $title = "About";
-include "Page2.php";
+include 'Page2.php';
 ?>
