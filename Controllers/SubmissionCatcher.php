@@ -45,9 +45,9 @@ if (empty($cuisineCB)) {
 }
 $forRestaurants = new ZomatoAdapter(new ZomatoApi());
 
-$restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters($cuisineCB,$distance);
+$restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters($cuisineCB,$distance,$rating);
 
 echo "<br><br>" . "<b>You Selected</b> " . $rating . " <b>and</b> " . $distance;
 
-echo "<br><br>". "<b>Restaurants by cuisines & distance (not filtered by ratings yet) :</b> <br><br>";
+echo "<br><br>". "<b>Restaurants by cuisines, distance, and ratings:</b> <br><br>";
 print_r($restaurants);

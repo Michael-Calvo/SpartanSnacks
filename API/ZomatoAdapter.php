@@ -69,20 +69,21 @@ class ZomatoAdapter implements APIAdapterInterface {
      * 
      * @param type $_arrayOfCuisineIds
      */
-    public function getRestaurantsByCIdsAndFilters($_arrayOfCuisineIds, $distance) {
+    public function getRestaurantsByCIdsAndFilters($_arrayOfCuisineIds, $_distance, $_minRating) {
         //checks to see if the method is recieving a valid distance
-        if (!isset(ZomatoApi::DISTANCES["$distance"])) {
+        if (!isset(ZomatoApi::DISTANCES["$_distance"])) {
             throw new Exception('Invalid distance - review ZomatoApi DISTANCES');
         }
         //construction of request url with filters
         $urlFirstHalf = "https://developers.zomato.com/api/v2.1/search?entity_id="
                 . ZomatoApi::SUBZONE_ID . "&entity_type=" . ZomatoApi::ENTITY_TYPE .
                 "=" . ZomatoApi::LATITUDE . "&lon=" . ZomatoApi::LONGITUDE .
-                "&radius=" . $this->milesToMeters(ZomatoApi::DISTANCES["$distance"]) .
+                "&radius=" . $this->milesToMeters(ZomatoApi::DISTANCES["$_distance"]) .
                 "&cuisines=";
         //continued construction of request url with cuisines
         $urlSecondHalf = "";
         $firstIteration = true;
+        $reccomendedRestaurants = null;
         if (is_array($_arrayOfCuisineIds)) {
             //looping through ids and adding them to url query in the format that zomato requires
             foreach ($_arrayOfCuisineIds as $id) {
@@ -96,8 +97,9 @@ class ZomatoAdapter implements APIAdapterInterface {
             //this echo is just for testing... will be removed
             echo "<br> <br> <b>Constructed Request URL: </b>" . $urlFirstHalf . $urlSecondHalf;
             $this->zomato->setAndRequest($urlFirstHalf . $urlSecondHalf);
+            $reccomendedRestaurants = $this->zomato->jParser('restaurants', $this->zomato->getContent());
         }
-        return $this->zomato->jParser('restaurants', $this->zomato->getContent());
+        return $this->getRestaurantsByAvgRating($reccomendedRestaurants, $_minRating);
     }
 
     /**
@@ -107,14 +109,25 @@ class ZomatoAdapter implements APIAdapterInterface {
     public function milesToMeters($_miles) {
         return $_miles * ZomatoApi::MILES_AS_METERS;
     }
+
     /**
      * This function returns an array of restaurants with ratings of $_minRating or higher
      * 
      * @param type $_minRating
      */
-    public function getRestaurantsByAvgRating($_minRating) {
-        throw new Exception('This method has not been implemented yet');
-       
+    public function getRestaurantsByAvgRating($_sortedArray, $_minRating) {
+        $count = 0;
+        foreach ($_sortedArray as $restaurant) {
+            $restaurant = $this->zomato->jParser('restaurant', $restaurant);
+            $usersRating = ($this->zomato->jParser('user_rating', $restaurant));
+            $rating = floatval($this->zomato->jParser('aggregate_rating', $usersRating));
+            if ($rating >= $_minRating) {
+                $count++;
+            } else {
+                break;
+            }
+        }
+        return array_slice($_sortedArray, 0, $count);
     }
 
 }

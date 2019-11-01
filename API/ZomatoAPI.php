@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This is an API that works through the Zomato service.
  * 
@@ -27,7 +26,7 @@ class ZomatoApi {
     const DISTANCES = array("Within 5 miles" => 5, "Within 10 miles" => 10, "Within 15 miles" => 15,
         "Any Distance" => self::MAX_DISTANCE);
     //using associative array for enum like behavior for ratings
-    const RATINGS = array("5/5 only" => self::MAX_RATING, "4/5 or better" => 4, "3/5 or better" => 3,
+    const RATINGS = array("5/5 only" => self::MAX_RATING, "4/5 or better" => 4, "3/5 or better" => 3,"2/5 or better" => 2,
         "Any Rating" => 1);
 
     private static $requestUrl;

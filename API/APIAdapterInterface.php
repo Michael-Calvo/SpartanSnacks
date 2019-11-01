@@ -5,12 +5,12 @@
 interface APIAdapterInterface {
 
     public function getCuisineIdPairs();
-    
-    public function getCuisineIds();
-    
-    public function getCuisineNames();
-    
-    public function getRestaurantsByCIdsAndFilters($_arrayOfCuisineIds, $distance);
 
-    public function getRestaurantsByAvgRating($_minRating);
+    public function getCuisineIds();
+
+    public function getCuisineNames();
+
+    public function getRestaurantsByCIdsAndFilters($_arrayOfCuisineIds, $distance,$_minRating);
+
+    //public function getRestaurantsByAvgRating($_arrayOfRestaurants, $_minRating);
 }
