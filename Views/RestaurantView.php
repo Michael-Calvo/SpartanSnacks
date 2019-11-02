@@ -1,65 +1,75 @@
-<!-- This file is designed for viewing/displaying restaurants
-after a users query 
+<?php
 
-author @ Taylor
-Updated: 10/25/2019
--->
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="../Styles/Stylesheet.css" />
-        <link rel="stylesheet" type="text/css" href="../Styles/RestaurantViewStyle.css" />
-    </head>
+/**
+ *  This class is designed for displaying restaurant data in a visually acceptable way for users
+ */
+class RestaurantView {
 
-    <body>
-        <div id="wrapper">
-            <div id="banner">
-            </div>
-            <!-- includes the main navigation where users clicks buttons as
-            "home" or "about."
-            -->
+    const DEFAULT_VALUE = "No Info";
+    
+    /**
+     * loads the view containing results of users cuisine and filter choices
+     * 
+     * @param array $restaurantArray - an array of restaurants
+     */
+    static function loadView($restaurantArray) {
+        self::beforeRestaurantTable();
+        self::createRestaurantTable($restaurantArray);
+        self::afterRestaurantTable();
+    }
+    
+    
+    private function createRestaurantTable($restaurantArray) {
+        echo count($restaurantArray) . " result(s) have been found for you.";
+        echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter()' placeholder='Find restaurant by name...'>
+        <table id='restaurantTable'>";
 
-            <?php
-            include 'MainNavigation.php';
-            ?>
-            <div id="content_area">
-                <!--Here we are creating a table to dynamically add restaurants to it. W also call a JavaScript function for filtering-->
-                <script type="text/javascript" src="../JavaScript/RestaurantFilter.js"></script>
+        echo"<tr class='header'><th style='width:25%;'>Restaurant Name</th><th style='width:25%;'>Info</th>
+        <th style='width:25%;'>Address</th><th style='width:25%;'>Ex. # of Spartans who have been here</th></tr>";
+        foreach ($restaurantArray as $restaurant) {
+            $restaurant = $restaurant['restaurant'];
+            $name = self::DEFAULT_VALUE;
+            $site = self::DEFAULT_VALUE;
+            $address = self::DEFAULT_VALUE;
+            $num = "#" . " (or some other info we want to show)";
 
-                <input type="text" id="userInput" onkeyup="restaurantNameFilter()" placeholder="Find restaurant by name...">
+            if (isset($restaurant['name'])) {
+                $name = $restaurant['name'];
+            }
+            if (isset($restaurant['url'])) {
+                $site = $restaurant['url'];
+            }
+            if (isset($restaurant['location'])) {
+                $address = ($restaurant['location'])['address'];
+            }
 
-                <table id="restaurantTable">
-                    <tr class="header">
-                        <th style="width:25%;">Restaurant Name</th>
-                        <th style="width:25%;">Website</th>
-                        <th style="width:25%;">Address</th>
-                        <th style="width:25%;">Phone...</th>
+            echo" <tr><td>$name </td><td>";
+            echo "<a href='" . $site . "'>More Info</a>";
+            echo"</td><td>$address</td><td>$num </td></tr>";
+        }
+        echo"</table>";
+    }
 
-                    </tr>
-                    <tr>
-                        <td>Example Restaurant 1</td>
-                        <td>whatever info we want to show here </td>
-                        <td>whatever info we want to show here too etc... </td>
-                    </tr>
-                    <tr>
-                        <td>Example Restaurant 2</td>
-                        <td>whatever info we want to show here </td>
-                        <td>whatever info we want to show here too etc... </td>
-                    </tr>
-                    <tr>
-                        <td>Example Restaurant 3</td>
-                        <td>whatever info we want to show here </td>
-                        <td>whatever info we want to show here too etc... </td>
-                    </tr>
-                    <tr>
-                        <td>Example Restaurant 4</td>
-                        <td>whatever info we want to show here </td>
-                        <td>whatever info we want to show here too etc... </td>
-                    </tr>
-                </table>
-            </div>
+    /**
+     *  creates html that forms page before restaurant table has been created
+     */
+    private function beforeRestaurantTable() {
+        echo "<html>";
+        include 'Head.php';
+        echo "<body> <div id='wrapper'><div id='banner'></div>";
+        include 'MainNavigation.php';
+        echo"<div id='content_area'>
+        <script type='text/javascript' src='../JavaScript/RestaurantFilter.js'>
+        </script>";
+    }
 
-    </body>
-    <?php
-    include 'Footer.php';
-    ?>
-</html>
+    /**
+     *  creates html that forms remainder of view page after restaurant table has been created
+     */
+    private function afterRestaurantTable() {
+        echo "</div> </body>";
+        include 'Footer.php';
+        echo"</html>";
+    }
+
+}

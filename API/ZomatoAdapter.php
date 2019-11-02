@@ -99,8 +99,6 @@ class ZomatoAdapter implements APIAdapterInterface {
                     $urlSecondHalf = $urlSecondHalf . "%2C" . $id;
                 }
             }
-            //this echo is just for testing... will be removed
-            echo "<br> <br> <b>Constructed Request URL: </b>" . $urlFirstHalf . $urlSecondHalf;
             $this->zomato->setAndRequest ($urlFirstHalf . $urlSecondHalf);
             $reccomendedRestaurants = $this->zomato->jParser ('restaurants', $this->zomato->getContent ());
         }
