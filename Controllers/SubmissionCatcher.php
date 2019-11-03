@@ -1,53 +1,47 @@
 <?php
 
 require_once'../API/ZomatoAdapter.php';
+include 'RestaurantController.php';
+
 /**
  * This file is a simple intermediary that passes cuisine and filters data 
- * from the HomeView to the submission controller.
+ * from the HomeView to the restaurant controller.
  * 
- * @author Taylor
+ * @author Taylor 
+ * Updated: 11/02/2019
  */
 $rating = "";
 $distance = "";
 $cuisineCB = null;
-if (isset($_POST['selectRating'])) {
+
+if  (isset ($_POST['selectRating'])) {
     $rating = $_POST['selectRating'];
 }
-if (isset($_POST['selectDistance'])) {
+if  (isset ($_POST['selectDistance'])) {
     $distance = $_POST['selectDistance'];
 }
-if (isset($_POST['checkboxArray'])) {
+if  (isset ($_POST['checkboxArray'])) {
     $cuisineCB = $_POST['checkboxArray'];
 }
 
-//creates restaurant controller
-$controller = new RestaurantController($rating, $distance, $cuisineCB);
-
-if (empty($cuisineCB)) {
+if  (empty ($cuisineCB)) {
     // redirect to index if no cuisine was selected before the form was submitted
     echo "<form id='invalidForm' action='../index.php' method='post'>
                 <input type='hidden' name='noSelection' value='Please select at least one cuisine.' />  
           </form>
           <script type='text/javascript'>
             //auto submit form with JavaScript
-            document.getElementById('invalidForm').submit();
+            document.getElementById ('invalidForm').submit ();
           </script>";
-} else {
-    $num = count($cuisineCB);
+} 
 
-    echo("<b>You selected $num cuisines:</b> ");
-    for ($i = 0; $i < $num; $i++) {
-        echo($cuisineCB[$i]);
-        if ($i < $num - 1) {
-            echo", ";
-        }
-    }
-}
-$forRestaurants = new ZomatoAdapter(new ZomatoApi());
+//creating an adapter object to look get filtered results
+$forRestaurants = new ZomatoAdapter (new ZomatoApi ());
 
-$restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters($cuisineCB,$distance);
+// an array of restaurants 
+$restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters ($cuisineCB, $distance, $rating);
 
-echo "<br><br>" . "<b>You Selected</b> " . $rating . " <b>and</b> " . $distance;
+//next, must create new instance of restaurant controller and load the view using method from RestaurantController
+//class to show restuarants 
 
-echo "<br><br>". "<b>Restaurants by cuisines & distance (not filtered by ratings yet) :</b> <br><br>";
-print_r($restaurants);
+        

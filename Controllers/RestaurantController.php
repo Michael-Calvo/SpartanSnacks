@@ -1,27 +1,34 @@
 <?php
-
 /**
  * The RestaurantController accepts data given to it from the RestaurantView 
  * and can alert the RestaurantModel to store data in the database or update the view. 
  *
- * @author 
+ * @author Taylor
+ * Updated: 11/02/2019
+ * 
  */
 class RestaurantController {
 
-    public $restaurantModel;
-    public $rating;
-    public $distance;
-    public $cuisine;
-    public function __construct($rating, $distance, $cuisineCB) {
-        $this->restaurantModel = new RestaurantModel();
+    private $view;
+
+    public function __construct() {
+        
     }
 
     public function invoke() {
         // let the model interact with the data and database
     }
-    
-    public function loadView() {
-        
+
+    /**
+     * Updates and displays the restaurant view without interacting with the model
+     * (function must be called with:: instead of ->)
+     * 
+     * @param array $restaurantArray - an array of restaurants
+     */
+    public static function loadBasicView($restaurantArray) {
+        include '../Views/RestaurantView.php';
+        $view = new RestaurantView();
+        $view::loadView($restaurantArray);
     }
 
 }
