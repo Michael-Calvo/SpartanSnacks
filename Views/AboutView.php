@@ -2,10 +2,14 @@
 about and what its purpose is. 
 
 authors @ Badesha
+updated 10/30/2019
 -->
 <!DOCTYPE html>
 <html>
     <!--includes head.php which includes base format of website-->
+    <?php
+    $title = "About";
+    ?>
     <?php
     include 'Head.php';
     ?>

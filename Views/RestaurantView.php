@@ -55,6 +55,7 @@ class RestaurantView {
      */
     private function beforeRestaurantTable() {
         echo "<html>";
+        $title = "Results";
         include 'Head.php';
         echo "<body> <div id='wrapper'><div id='banner'></div>";
         include 'MainNavigation.php';
