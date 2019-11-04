@@ -26,6 +26,7 @@ class RestaurantController {
      * @param array $restaurantArray - an array of restaurants
      */
     public static function loadBasicView($restaurantArray) {
+        $title = "Results";
         include '../Views/RestaurantView.php';
         $view = new RestaurantView();
         $view::loadView($restaurantArray);

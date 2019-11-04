@@ -1,3 +1,7 @@
+<<!--Index file which serves as the homepage of the website.
+authors @Badesha,Taylor
+updated 10/25/2019
+-->
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>

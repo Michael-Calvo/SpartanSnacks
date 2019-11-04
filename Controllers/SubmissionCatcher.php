@@ -1,8 +1,4 @@
 <?php
-
-require_once'../API/ZomatoAdapter.php';
-include 'RestaurantController.php';
-
 /**
  * This file is a simple intermediary that passes cuisine and filters data 
  * from the HomeView to the restaurant controller.
@@ -10,6 +6,9 @@ include 'RestaurantController.php';
  * @author Taylor 
  * Updated: 11/02/2019
  */
+require_once'../API/ZomatoAdapter.php';
+include 'RestaurantController.php';
+
 $rating = "";
 $distance = "";
 $cuisineCB = null;
@@ -33,15 +32,17 @@ if  (empty ($cuisineCB)) {
             //auto submit form with JavaScript
             document.getElementById ('invalidForm').submit ();
           </script>";
-} 
+}
 
 //creating an adapter object to look get filtered results
 $forRestaurants = new ZomatoAdapter (new ZomatoApi ());
 
-// an array of restaurants 
+//*an array of restaurants 
 $restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters ($cuisineCB, $distance, $rating);
 
-//next, must create new instance of restaurant controller and load the view using method from RestaurantController
+//creates new instance of restaurant controller and load the view using method from RestaurantController
+$myRes = new RestaurantController;
+echo $myRes->loadBasicView($restaurants);
+
 //class to show restuarants 
 
-        
