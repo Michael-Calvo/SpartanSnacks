@@ -3,7 +3,7 @@
  * This file is a simple intermediary that passes cuisine and filters data 
  * from the HomeView to the restaurant controller.
  * 
- * @author Taylor 
+ * @author Taylor,Badesha 
  * Updated: 11/02/2019
  */
 require_once'../API/ZomatoAdapter.php';
@@ -43,6 +43,4 @@ $restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters ($cuisineCB, $dis
 //creates new instance of restaurant controller and load the view using method from RestaurantController
 $myRes = new RestaurantController;
 echo $myRes->loadBasicView($restaurants);
-
-//class to show restuarants 
 
