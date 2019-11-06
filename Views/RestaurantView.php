@@ -25,13 +25,13 @@ class RestaurantView {
         <table id='restaurantTable'>";
 
         echo"<tr class='header'><th style='width:25%;'>Restaurant Name</th><th style='width:25%;'>Info</th>
-        <th style='width:25%;'>Address</th><th style='width:25%;'>Ex. # of Spartans who have been here</th></tr>";
+        <th style='width:25%;'>Address</th><th style='width:25%;'>Ratings</th></tr>";
         foreach ($restaurantArray as $restaurant) {
             $restaurant = $restaurant['restaurant'];
             $name = self::DEFAULT_VALUE;
             $site = self::DEFAULT_VALUE;
             $address = self::DEFAULT_VALUE;
-            $num = "#" . " (or some other info we want to show)";
+            $rating = self::DEFAULT_VALUE;
 
             if (isset($restaurant['name'])) {
                 $name = $restaurant['name'];
@@ -42,10 +42,14 @@ class RestaurantView {
             if (isset($restaurant['location'])) {
                 $address = ($restaurant['location'])['address'];
             }
+            if (isset($restaurant['user_rating'])) {
+                $rating = ($restaurant['user_rating'])['aggregate_rating'];
+            }
+            
 
             echo" <tr><td>$name </td><td>";
             echo "<a href='" . $site . "'>More Info</a>";
-            echo"</td><td>$address</td><td>$num </td></tr>";
+            echo"</td><td>$address</td><td>$rating </td></tr>";
         }
         echo"</table>";
     }
