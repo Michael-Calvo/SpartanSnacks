@@ -118,28 +118,32 @@ class ZomatoAdapter implements APIAdapterInterface {
     /**
      * This function returns an array of restaurants with ratings of $_minRating or higher.
      * 
-     * @param array $_sortedArray - an array sorted by ratings  (high-low)
+     * @param array $_restaurantArray - an array containing restaurant information
      * @param int $_minRating - the user selected, minimum average rating, a restaurant may have
      * @return array -  a sorted array of restaurants with avg ratings at least $_minRating 
      */
-    public function getRestaurantsByAvgRating ($_sortedArray, $_minRating) {
-        $count = 0;
-        foreach ($_sortedArray as $restaurant) {
-            //an array containing a restaurant and all its data
-            $restaurant = $this->zomato->jParser ('restaurant', $restaurant);
-            //rating info exracted from a restaurant array 
-            $usersRating = ($this->zomato->jParser ('user_rating', $restaurant));
-            //the average rating of a restaurant 
-            $rating = floatval ($this->zomato->jParser ('aggregate_rating', $usersRating));
-            //counting the number of acceptable restuarants with a avg rating that is at least the minimum rating
-            if ($rating >= $_minRating) {
-                $count++;
-            } else {
-                break;
+    public function getRestaurantsByAvgRating ($_restaurantArray, $_minRating) {
+        // callback function that usort uses to sort restaurants
+        function sortMethod($a,$b) {
+          // return -1 if value is not larger or 1 if value is larger 
+          return ($a["restaurant"]["user_rating"]["aggregate_rating"] <=
+                  $b["restaurant"]["user_rating"]["aggregate_rating"]) ? -1 : 1;
+        }
+        
+        usort($_restaurantArray, "sortMethod");
+        $splitPoint = 0;
+        for($i = 0; $i < count($_restaurantArray); $i++) {
+            if($_restaurantArray[$i]["restaurant"]["user_rating"]["aggregate_rating"] <= $_minRating){
+                $splitPoint = $i-1;
             }
         }
-        //returning restuarants from the sorted restaurant array and dropping values beyond count
-        return array_slice ($_sortedArray, 0, $count);
+        
+        //returning restaurants from the restaurant array and dropping array 
+        //at splitPoint where values are less than _minRating
+        return array_reverse (array_slice ($_restaurantArray, $splitPoint));
     }
+    
+    
+    
 
 }
