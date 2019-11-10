@@ -15,16 +15,16 @@ class RestaurantView {
      * 
      * @param array $restaurantArray - an array of restaurants
      */
-    static function loadView($restaurantArray) {
-        self::beforeRestaurantTable();
-        self::createRestaurantTable($restaurantArray);
-        self::afterRestaurantTable();
+    static function loadView ($restaurantArray) {
+        self::beforeRestaurantTable ();
+        self::createRestaurantTable ($restaurantArray);
+        self::afterRestaurantTable  ();
     }
     
     
-    private function createRestaurantTable($restaurantArray) {
-        echo count($restaurantArray) . " result(s) have been found for you.";
-        echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter()' placeholder='Find restaurant by name...'>
+    private function createRestaurantTable ($restaurantArray) {
+        echo count ($restaurantArray) . " result (s) have been found for you.";
+        echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter ()' placeholder='Find restaurant by name...'>
         <table id='restaurantTable'>";
 
         echo"<tr class='header'><th style='width:25%;'>Restaurant Name</th><th style='width:25%;'>Info</th>
@@ -36,17 +36,17 @@ class RestaurantView {
             $address = self::DEFAULT_VALUE;
             $rating = self::DEFAULT_VALUE;
 
-            if (isset($restaurant['name'])) {
+            if (isset ($restaurant['name'])) {
                 $name = $restaurant['name'];
             }
-            if (isset($restaurant['url'])) {
+            if (isset ($restaurant['url'])) {
                 $site = $restaurant['url'];
             }
-            if (isset($restaurant['location'])) {
-                $address = ($restaurant['location'])['address'];
+            if (isset ($restaurant['location'])) {
+                $address =  ($restaurant['location'])['address'];
             }
-            if (isset($restaurant['user_rating'])) {
-                $rating = ($restaurant['user_rating'])['aggregate_rating'];
+            if (isset ($restaurant['user_rating'])) {
+                $rating =  ($restaurant['user_rating'])['aggregate_rating'];
             }
             
 
@@ -60,7 +60,7 @@ class RestaurantView {
     /**
      *  creates html that forms page before restaurant table has been created
      */
-    private function beforeRestaurantTable() {
+    private function beforeRestaurantTable () {
         echo "<html>";
         $title = "Results";
         include 'Head.php';
@@ -74,7 +74,7 @@ class RestaurantView {
     /**
      *  creates html that forms remainder of view page after restaurant table has been created
      */
-    private function afterRestaurantTable() {
+    private function afterRestaurantTable () {
         echo "</div> </body>";
         include 'Footer.php';
         echo"</html>";
