@@ -3,7 +3,7 @@
 /**
  * This is an API that works through the Zomato service.
  * 
- * @author Isaac Taylor, ...
+ * @author Isaac Taylor
  *  Updated: 11/02/2019
  */
 class ZomatoApi {
@@ -17,7 +17,7 @@ class ZomatoApi {
     protected const LATITUDE = 36.0863000000;
     protected const LONGITUDE = -79.8273000000;
     //Maximum radius in miles away from Greensboro
-    protected const MAX_DISTANCE = 20;
+    protected const MAX_DISTANCE = 9000;
     // maximum rating a restaurant can have
     protected const MAX_RATING = 5;
     // ratio of meters to one mile

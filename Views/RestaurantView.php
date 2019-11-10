@@ -2,6 +2,9 @@
 
 /**
  *  This class is designed for displaying restaurant data in a visually acceptable way for users
+ * 
+ * @author Isaac Taylor
+ * Updated: 10/23/2019
  */
 class RestaurantView {
 

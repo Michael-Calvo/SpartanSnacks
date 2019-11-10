@@ -6,8 +6,8 @@ include_once "APIAdapterInterface.php";
 /**
  * This class connects to the ZomatoApi
  * 
- * @author Isaac Taylor, ...
- *  Updated: 11/02/2019
+ * @author Isaac Taylor
+ *  Updated: 11/09/2019
  */
 class ZomatoAdapter implements APIAdapterInterface {
 
@@ -102,7 +102,7 @@ class ZomatoAdapter implements APIAdapterInterface {
             $this->zomato->setAndRequest ($urlFirstHalf . $urlSecondHalf);
             $reccomendedRestaurants = $this->zomato->jParser ('restaurants', $this->zomato->getContent ());
         }
-        return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, $_minRating);
+        return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, ZomatoApi::getRatings()["$_minRating"]);
     }
 
     /**
@@ -125,25 +125,21 @@ class ZomatoAdapter implements APIAdapterInterface {
     public function getRestaurantsByAvgRating ($_restaurantArray, $_minRating) {
         // callback function that usort uses to sort restaurants
         function sortMethod($a,$b) {
-          // return -1 if value is not larger or 1 if value is larger 
-          return ($a["restaurant"]["user_rating"]["aggregate_rating"] <=
-                  $b["restaurant"]["user_rating"]["aggregate_rating"]) ? -1 : 1;
+          // return -1 if value "a" is not larger or 1 if "a" is larger 
+          return ($a["restaurant"]["user_rating"]["aggregate_rating"] - 
+                  $b["restaurant"]["user_rating"]["aggregate_rating"]) <= 0 ? -1 : 1;
         }
-        
         usort($_restaurantArray, "sortMethod");
         $splitPoint = 0;
         for($i = 0; $i < count($_restaurantArray); $i++) {
-            if($_restaurantArray[$i]["restaurant"]["user_rating"]["aggregate_rating"] <= $_minRating){
-                $splitPoint = $i-1;
+            if(($_restaurantArray[$i]["restaurant"]["user_rating"]["aggregate_rating"]) <= $_minRating && $_minRating!= 1){
+                $splitPoint = $i+1;
+            } else {
+                break;
             }
         }
-        
         //returning restaurants from the restaurant array and dropping array 
         //at splitPoint where values are less than _minRating
         return array_reverse (array_slice ($_restaurantArray, $splitPoint));
     }
-    
-    
-    
-
 }
