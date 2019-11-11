@@ -1,10 +1,6 @@
 <?php
 
-/**
- * This user Class will be used to create a new user to be inserted into the
- * database with a time, to see how often the site is used. The other userclass
- * Will be either deprecated or added to another sql table given time.
- */
+//Author: Mike Calvo
 abstract class newUserSearch {
 
     protected $time;
@@ -33,7 +29,7 @@ abstract class newUserSearch {
      * @param type $_uuid
      */
     public function loadByUuid($_uuid) {
-        $map = new SplObjectStorage();
+        $map = array();
         $map["UUID"] = $_uuid;
         return $this->loadByCondition(map);
     }
@@ -44,7 +40,7 @@ abstract class newUserSearch {
      * @param type $_value
      */
     public function loadByCondition($_name, $_value) {
-        $map = new SplObjectStorage();
+        $map = array();
         $_key = $_name;
 
         $map[$_key] = $_value;

@@ -1,15 +1,15 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
- * @author Mike
+ * @author Mike Calvo
  */
 interface DataBaseInterface {
-    //put your code here
+    abstract function createObject(array $keypair, $table);
+    
+    abstract function readOject(array $keypair, $table);
+    
+    public function updateObject(array $keypair, $uuid, $table);
+    
+    public function deleteObject($uuid);
 }
