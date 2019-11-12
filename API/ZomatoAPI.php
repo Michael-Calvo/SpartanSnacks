@@ -3,7 +3,7 @@
 /**
  * This is an API that works through the Zomato service.
  * 
- * @author Isaac Taylor, ...
+ * @author Isaac Taylor
  *  Updated: 11/02/2019
  */
 class ZomatoApi {

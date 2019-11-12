@@ -1,4 +1,4 @@
-<<!--Index file which serves as the homepage of the website.
+<!--Index file which serves as the homepage of the website.
 authors @Badesha,Taylor
 updated 10/25/2019
 -->
