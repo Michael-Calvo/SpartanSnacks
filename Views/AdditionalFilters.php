@@ -4,7 +4,7 @@ choose their restaurant choosing based on ratings and distance.
 author @ Isaac Taylor
 Updated: 10/23/2019
 -->
-<link rel="stylesheet" type="text/css" href="Styles/filterSubmit.css">
+<link rel="stylesheet" type="text/css" href="Styles/FilterSubmit.css">
 
 <div  class="form-container">
     <h5><center>Additional Filters</center></h5>

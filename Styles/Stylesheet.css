@@ -28,7 +28,7 @@ body p
 /*determines background size of wrapper and image*/
 #banner
 {
-    background-image: url(../Images/banner.jpg);
+    background-image: url(../Images/Banner.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     border: 5px solid #dedede;

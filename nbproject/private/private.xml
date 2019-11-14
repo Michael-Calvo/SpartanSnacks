@@ -12,9 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/API/ZomatoAPI.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/Views/RestaurantView.php</file>
-            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/API/ZomatoAdapter.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/JavaScript/Animate.js</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/Styles/RestaurantViewStyle.css</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/Views/Head.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/Styles/FilterSubmit.css</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/Views/AboutView.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/Views/HomeView.php</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/Styles/Stylesheet.css</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/SNGithub/SpartanSnacks/index.php</file>
         </group>
     </open-files>
 </project-private>
