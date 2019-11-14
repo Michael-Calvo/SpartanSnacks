@@ -62,9 +62,10 @@ author @ Badesha, Taylor
 
                 </center>
             </div>
-
             <div id="sidebar">
-
+             <?php
+             include 'Controllers/Event.php';
+             ?>
             </div>
 
             <?php
