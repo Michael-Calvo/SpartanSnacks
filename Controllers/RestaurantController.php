@@ -3,8 +3,8 @@
  * The RestaurantController accepts data given to it from the RestaurantView 
  * and can alert the RestaurantModel to store data in the database or update the view. 
  *
- * @author Taylor
- * Updated: 11/02/2019
+ * @author Taylor,Badesha
+ * Updated: 11/13/2019
  * 
  */
 class RestaurantController {
@@ -26,9 +26,14 @@ class RestaurantController {
      * @param array $restaurantArray - an array of restaurants
      */
     public static function loadBasicView($restaurantArray) {
-        $title = "Results";
         include '../Views/RestaurantView.php';
         $view = new RestaurantView();
+        $view::loadView($restaurantArray);
+    }
+    
+    public static function loadEventView($restaurantArray){
+        include 'Views/EventView.php';
+        $view = new EventView();
         $view::loadView($restaurantArray);
     }
 
