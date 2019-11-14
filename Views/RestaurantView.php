@@ -23,8 +23,8 @@ class RestaurantView {
     
     
     private function createRestaurantTable ($restaurantArray) {
-        echo count ($restaurantArray) . " result (s) have been found for you.";
-        echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter ()' placeholder='Find restaurant by name...'>
+       echo count ($restaurantArray) . " result (s) have been found for you.";
+       echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter ()' placeholder='Find restaurant by name...'>
         <table id='restaurantTable'>";
 
         echo"<tr class='header'><th style='width:25%;'>Restaurant Name</th><th style='width:25%;'>Info</th>
@@ -51,7 +51,7 @@ class RestaurantView {
             
 
             echo" <tr><td>$name </td><td>";
-            echo "<a href='" . $site . "'>More Info</a>";
+            echo "<a href='" . $site . "' target ='_blank'>More Info</a>";
             echo"</td><td>$address</td><td>$rating </td></tr>";
         }
         echo"</table>";
