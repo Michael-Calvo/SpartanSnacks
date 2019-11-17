@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/SpartanSnacksTest/Controllers/SubmissionCatcher.php</file>
-            <file>file:/C:/xampp/htdocs/SpartanSnacksTest/index.php</file>
-            <file>file:/C:/xampp/htdocs/SpartanSnacksTest/API/ZomatoAdapter.php</file>
-            <file>file:/C:/xampp/htdocs/SpartanSnacksTest/Controllers/RestaurantController.php</file>
-            <file>file:/C:/xampp/htdocs/SpartanSnacksTest/Views/RestaurantView.php</file>
+            <file>file:/C:/xampp/htdocs/SpartanSnacks/Views/RestaurantView.php</file>
+            <file>file:/C:/xampp/htdocs/SpartanSnacks/Models/RestaurantModel.php</file>
         </group>
     </open-files>
 </project-private>
