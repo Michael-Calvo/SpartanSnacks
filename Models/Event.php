@@ -19,7 +19,7 @@ $RatingView = 'Any Rating';
 $CuisineArray = array(); //creates an array that we can store cuisine IDs into.
  
 //creates an array with cuisine names as keys to each day of the week.
-$days_array = array( "Sunday" => 'Southern',"Monday" => 'Seafood', "Tuesday" => 'Mexican',
+$days_array = array( "Sunday" => 'Chinese',"Monday" => 'Southern', "Tuesday" => 'Mexican',
     "Wednesday" => 'Greek', "Thursday" => 'Japanese', "Friday" => 'Burger', "Saturday" => 'Italian');
 
 //sets the cuisine of the day depending on what day it is. date("l") returns a day(Monday). 

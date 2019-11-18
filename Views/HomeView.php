@@ -62,12 +62,11 @@ author @ Badesha, Taylor, , Calvo(Small Change)
 
                 </center>
             </div>
-            <div id="sidebar">
+            <div id="sidebar" style="border:4px double #000000;">
              <?php
              include 'Models/Event.php';
              ?>
             </div>
-
             <?php
             include 'Footer.php';
             ?>
