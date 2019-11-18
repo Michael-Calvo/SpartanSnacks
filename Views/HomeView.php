@@ -1,7 +1,7 @@
 <!--Page1 of website or "Home page." This gives users the option to
 choose cuisines and filter it to reviews and distance.
 
-author @ Badesha, Taylor
+author @ Badesha, Taylor, , Calvo(Small Change)
 -->
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@ author @ Badesha, Taylor
             </div>
             <div id="sidebar">
              <?php
-             include 'Controllers/Event.php';
+             include 'Models/Event.php';
              ?>
             </div>
 

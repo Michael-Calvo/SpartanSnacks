@@ -3,11 +3,11 @@
  * This file determines what the cuisine of the day is and constructs a
  * a restaurant table for users to see on the homepage in the sidebar. 
  * 
- * @author Badesha
+ * @author Badesha, Calvo(small change)
  * Updated: 11/13/2019
  */
 require_once 'API/ZomatoAdapter.php';
-include 'RestaurantController.php';
+include 'Controllers/RestaurantController.php';
 const timezone = 'EST';
 
 //sets timezone to EST.
