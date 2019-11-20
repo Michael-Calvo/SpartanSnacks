@@ -8,13 +8,10 @@ class mySqlConnector implements DataBaseInterface {
 
         $host = "DUMMY";
         $databaseName = "DUMMY";
-        $passowrd = "DUMMY";
+        $password = "DUMMY";
         $username = "DUMMY";
 //To create the connection
         $connect = new mysqli($host, $username, $password, $databaseName);
-
-
-
 
 //Connection Checking, if there is a connection error, print the error
         if ($connect->connect_error) {
