@@ -6,10 +6,10 @@ class mySqlConnector implements DataBaseInterface {
 //These Need Values!
     public function connectToDatabase() {
 
-        $host = "DUMMY";
-        $databaseName = "DUMMY";
-        $password = "DUMMY";
-        $username = "DUMMY";
+        $host = "localhost";
+        $databaseName = "spartansnacks";
+        $password = " ";
+        $username = "root";
 //To create the connection
         $connect = new mysqli($host, $username, $password, $databaseName);
 
@@ -17,7 +17,7 @@ class mySqlConnector implements DataBaseInterface {
         if ($connect->connect_error) {
             exit("Failure" . $connect->connect_error);
         }
-
+        echo "connection";
         return $connect;
     }
 
