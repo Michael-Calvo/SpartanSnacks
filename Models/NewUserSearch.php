@@ -1,9 +1,11 @@
 <?php
 
+require_once 'Database/DataStoreAdapter.php';
+
 //Author: Mike Calvo
 abstract class newUserSearch {
 
-    protected $time;
+    protected $IP;
     protected $userID;
     protected $uuid;
 
@@ -52,14 +54,20 @@ abstract class newUserSearch {
      * save item to the database
      */
     public function save() {
-        
+        if ($this->userID == 0) {
+            return DataStoreAdapter . createObject($this);
+        } else {
+            return DataStoreAdapter . updateObject($this);
+        }
+
+        return false;
     }
 
     /**
      * delete item from the database
      */
     public function delete() {
-        
+        return DataStoreAdapter . deleteObject($this);
     }
 
     /**
@@ -80,8 +88,8 @@ abstract class newUserSearch {
         return $this->userID;
     }
 
-    function getTime() {
-        return $this->time;
+    function getIP() {
+        return $this->IP;
     }
 
     //============================== SETTER ==============================//
@@ -94,8 +102,8 @@ abstract class newUserSearch {
         $this->userID = $userID;
     }
 
-    function setTime($time): void {
-        $this->time = $time;
+    function setIP($IP): void {
+        $this->IP = $IP;
     }
 
 }
