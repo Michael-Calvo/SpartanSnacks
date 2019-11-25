@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+<!--Index file which serves as the homepage of the website.
+authors @Badesha,Taylor
+updated 10/25/2019
 -->
-<html>
-    <head>
-        <meta charset="windows-1252">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        ?>
-    </body>
-</html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<?php
+$homeUrl = '/index.php';
+require_once'API/ZomatoAdapter.php';
+$title = "SpartanSnacks - Restaurant Finder";
+$content = "Welcome to SpartanSnacks!";
+//connect to ZomatoApi using the ZomatoAdapter
+$forCuisines = new ZomatoAdapter(new ZomatoApi());
+//array of cusine names for displaying in HomeView
+$cusNames = $forCuisines->getCuisineNames();
+//array of cusine ids for setting html checkbox values
+$idValues = $forCuisines->getCuisineIds();
+include 'Views/HomeView.php';
