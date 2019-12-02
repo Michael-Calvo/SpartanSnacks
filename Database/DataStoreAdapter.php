@@ -1,4 +1,5 @@
 <?php
+
 //author Mike Calvo, Ike Quigly
 require_once 'Database/mySqlConnector.php';
 require_once 'Database/NewUserSearch.php';
