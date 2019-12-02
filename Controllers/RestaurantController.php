@@ -22,19 +22,19 @@ class RestaurantController {
     /**
      * Updates and displays the restaurant view without interacting with the model
      * (function must be called with:: instead of ->)
-     * 
-     * @param array $restaurantArray - an array of restaurants
+     *
+     * @param array $_restaurantArray - an array of restaurants
      */
-    public static function loadBasicView($restaurantArray) {
+    public static function loadBasicView($_restaurantArray, $_color = null) {
         include '../Views/RestaurantView.php';
         $view = new RestaurantView();
-        $view::loadView($restaurantArray);
+        $view::loadView($_restaurantArray, $_color);
     }
     
-    public static function loadEventView($restaurantArray){
+    public static function loadEventView($_restaurantArray){
         include 'Views/EventView.php';
         $view = new EventView();
-        $view::loadView($restaurantArray);
+        $view::loadView($_restaurantArray);
     }
 
 }

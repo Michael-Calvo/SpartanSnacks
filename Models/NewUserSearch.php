@@ -3,7 +3,7 @@
 //Author: Mike Calvo
 abstract class newUserSearch {
 
-    protected $time;
+    protected $IP;
     protected $userID;
     protected $uuid;
 
@@ -19,19 +19,19 @@ abstract class newUserSearch {
      * @param type $_userID
      */
     public function loadById($_userID) {
-        $map = new SplObjectStorage();
+        $map = array();
         $map["ID"] = $_userID;
-        return $this->loadByCondition(map);
+        return DataStoreAdapter . readObject($map);
     }
 
     /**
      * loading by the uuid from the database
      * @param type $_uuid
      */
-    public function loadByUuid($_uuid) {
+    public function loadByUuid() {
         $map = array();
         $map["UUID"] = $_uuid;
-        return $this->loadByCondition(map);
+        return DataStoreAdapter . readObject($map);
     }
 
     /**
@@ -41,25 +41,27 @@ abstract class newUserSearch {
      */
     public function loadByCondition($_name, $_value) {
         $map = array();
-        $_key = $_name;
-
-        $map[$_key] = $_value;
-
-        return $this->loadByCondition(map);
+        $map[$_name] = $_value;
+        return DataStoreAdapter . readObject($map);
     }
 
     /**
      * save item to the database
      */
     public function save() {
-        
+        if ($this->userID == 0) {
+            return DataStoreAdapter . createObject($this);
+        } else {
+            return DataStoreAdapter . updateObject($this);
+        }
+        return false;
     }
 
     /**
      * delete item from the database
      */
     public function delete() {
-        
+        return DataStoreAdapter . deleteObject($this);
     }
 
     /**
@@ -80,12 +82,11 @@ abstract class newUserSearch {
         return $this->userID;
     }
 
-    function getTime() {
-        return $this->time;
+    function getIP() {
+        return $this->IP;
     }
 
     //============================== SETTER ==============================//
-
     public function setUuid($uuid) {
         $this->uuid = $uuid;
     }
@@ -94,8 +95,8 @@ abstract class newUserSearch {
         $this->userID = $userID;
     }
 
-    function setTime($time): void {
-        $this->time = $time;
+    function setIP($IP): void {
+        $this->IP = $IP;
     }
 
 }

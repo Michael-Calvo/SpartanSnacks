@@ -1,7 +1,7 @@
 <!--Page1 of website or "Home page." This gives users the option to
 choose cuisines and filter it to reviews and distance.
 
-author @ Badesha, Taylor, , Calvo(Small Change)
+author @ Badesha, Taylor, Calvo(Small Change)
 -->
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@ author @ Badesha, Taylor, , Calvo(Small Change)
 
                         <script type="text/javascript" src="JavaScript/Animate.js"></script>
                         <form name="checkForm" method="post" action="Controllers/SubmissionCatcher.php"> 
-                            <div id="scroller" style="width:300px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
+                            <div id="scroller" style="width:270px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
                                 <?php
                                 //displays a message to request that a user selects a cuisine
                                 if (isset($_POST['noSelection'])) {
