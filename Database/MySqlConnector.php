@@ -8,7 +8,7 @@ class mySqlConnector implements DataBaseInterface {
 
         $host = "localhost";
         $databaseName = "spartansnacks";
-        $password = " ";
+        $password = "";
         $username = "root";
         //To create the connection
         $connect = new mysqli($host, $username, $password, $databaseName);

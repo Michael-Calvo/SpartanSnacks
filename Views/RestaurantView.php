@@ -12,41 +12,49 @@ class RestaurantView {
 
     /**
      * loads the view containing results of users cuisine and filter choices
-     *
-     * @param array $restaurantArray - an array of restaurants
+
+     * 
+     * @param array $_restaurantArray - an array of restaurants
+     * @param string $_color - a user selected color
+
      */
-    static function loadView ($restaurantArray) {
-        self::beforeRestaurantTable ();
-        self::createRestaurantTable ($restaurantArray);
-        self::afterRestaurantTable  ();
+    static function loadView($_restaurantArray, $_color = null) {
+        self::beforeRestaurantTable();
+        self::createRestaurantTable($_restaurantArray);
+        self::afterRestaurantTable();
+        if (!empty($_color)) {
+            echo "<p hidden id = 'selectedColor' >$_color</p>";
+            echo "<script type='text/javascript' src='../JavaScript/ColorEffect.js'></script>";
+        }
     }
 
+    private function createRestaurantTable($_restaurantArray) {
 
-    private function createRestaurantTable ($restaurantArray) {
-       echo count ($restaurantArray) . " result (s) have been found for you.";
-       echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter ()' placeholder='Find restaurant by name...'>
+        echo count($_restaurantArray) . " result (s) have been found for you.";
+        echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter ()' placeholder='Find restaurant by name...'>
+
         <table id='restaurantTable'>";
 
         echo"<tr class='header'><th style='width:25%;'>Restaurant Name</th><th style='width:25%;'>Info</th>
         <th style='width:25%;'>Address</th><th style='width:25%;'>Ratings</th></tr>";
-        foreach ($restaurantArray as $restaurant) {
-            $restaurant = $restaurant['restaurant'];
+        foreach ($_restaurantArray as $_restaurant) {
+            $_restaurant = $_restaurant['restaurant'];
             $name = self::DEFAULT_VALUE;
             $site = self::DEFAULT_VALUE;
             $address = self::DEFAULT_VALUE;
             $rating = self::DEFAULT_VALUE;
 
-            if (isset ($restaurant['name'])) {
-                $name = $restaurant['name'];
+            if (isset($_restaurant['name'])) {
+                $name = $_restaurant['name'];
             }
-            if (isset ($restaurant['url'])) {
-                $site = $restaurant['url'];
+            if (isset($_restaurant['url'])) {
+                $site = $_restaurant['url'];
             }
-            if (isset ($restaurant['location'])) {
-                $address =  ($restaurant['location'])['address'];
+            if (isset($_restaurant['location'])) {
+                $address = ($_restaurant['location'])['address'];
             }
-            if (isset ($restaurant['user_rating'])) {
-                $rating =  ($restaurant['user_rating'])['aggregate_rating'];
+            if (isset($_restaurant['user_rating'])) {
+                $rating = ($_restaurant['user_rating'])['aggregate_rating'];
             }
 
 
@@ -60,13 +68,14 @@ class RestaurantView {
     /**
      *  creates html that forms page before restaurant table has been created
      */
-    private function beforeRestaurantTable () {
+    private function beforeRestaurantTable() {
         echo "<html>";
         $title = "Results";
         include 'Head.php';
         echo "<body> <div id='wrapper'><div id='banner'></div>";
         include 'MainNavigation.php';
         echo"<div id='content_area'>
+
         <script type='text/javascript' src='../JavaScript/RestaurantFilter.js'>
         </script>";
     }
@@ -74,7 +83,7 @@ class RestaurantView {
     /**
      *  creates html that forms remainder of view page after restaurant table has been created
      */
-    private function afterRestaurantTable () {
+    private function afterRestaurantTable() {
         echo "</div> </body>";
         include 'Footer.php';
         echo"</html>";
