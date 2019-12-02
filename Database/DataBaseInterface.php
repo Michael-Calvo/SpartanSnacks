@@ -1,6 +1,6 @@
 <?php
 /*
- * @author Mike Calvo
+ * @author Mike Calvo, Ike Quigley
  */
 interface DataBaseInterface {
     abstract function createObject(array $keypair, $table);
