@@ -1,12 +1,14 @@
 <?php
+require_once 'Database/DataStoreAdapter.php';
 
 //Author: Mike Calvo
 abstract class newUserSearch {
-
+    
     protected $IP;
     protected $userID;
     protected $uuid;
-
+    protected $color;
+    
     /**
      * Creates a user class and generates a uuid for it.
      */
@@ -15,51 +17,14 @@ abstract class newUserSearch {
     }
 
     /**
-     * Loading an object by the user ID from the database
-     * @param type $_userID
-     */
-    public function loadById($_userID) {
-        $map = new SplObjectStorage();
-        $map["ID"] = $_userID;
-        return $this->loadByCondition(map);
-    }
-
-    /**
-     * loading by the uuid from the database
-     * @param type $_uuid
-     */
-    public function loadByUuid($_uuid) {
-        $map = array();
-        $map["UUID"] = $_uuid;
-        return $this->loadByCondition(map);
-    }
-
-    /**
-     * loading the UserClass from a name value pair
-     * @param type $_name
-     * @param type $_value
-     */
-    public function loadByCondition($_name, $_value) {
-        $map = array();
-        $_key = $_name;
-
-        $map[$_key] = $_value;
-
-        return $this->loadByCondition(map);
-    }
-
-    /**
      * save item to the database
      */
     public function save() {
-        
-    }
-
-    /**
-     * delete item from the database
-     */
-    public function delete() {
-        
+        if($this->userID ==0){
+            return DataStoreAdapter::createObject($this);
+        }else{
+            return DataStoreAdapter::updateObject($this);
+        }
     }
 
     /**
@@ -83,6 +48,11 @@ abstract class newUserSearch {
     function getIP() {
         return $this->IP;
     }
+    
+    public function getColor() {
+        return $this->color;
+    }
+
 
     //============================== SETTER ==============================//
 
@@ -94,8 +64,12 @@ abstract class newUserSearch {
         $this->userID = $userID;
     }
 
-    function setTime($IP): void {
+    public function setTime($IP) {
         $this->IP = $IP;
     }
+    public function setColor() {
+        return $this->Color;
+    }
+
 
 }

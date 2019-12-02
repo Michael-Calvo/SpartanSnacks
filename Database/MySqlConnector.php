@@ -1,5 +1,5 @@
 <?php
-
+require_once 'Database/DataStoreAdapter.php';
 class mySqlConnector implements DataBaseInterface {
 
 //Author: Mike Calvo, Ike Quigley
@@ -21,21 +21,23 @@ class mySqlConnector implements DataBaseInterface {
         return $connect;
     }
 
-    //Creates a new entry to the database
-    public function createObject($databaseName) {
-
-        $query = "INSERT INTO " + $databaseName;
+    //Creates a new entry to the database using fields of the NewUserSearch Object
+    public function createObject($newUS) {
+         $sql = "INSERT INTO user VALUES ('$newUS->getID()','$newUS->getUUID(),'$newUS->getIP()','$newUS->getColor()'";
+         
+         if (self::$conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . self::$conn->error;
+        }
+         
     }
 
-    public function deleteObject($uuid) {
+    public function updateObject() {
         
     }
 
-    public function updateObject(array $keypair, $uuid, $table) {
-        
-    }
-
-    public function readOject(array $keypair, $table) {
+    public function readOject() {
         
     }
 
