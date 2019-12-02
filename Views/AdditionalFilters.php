@@ -1,4 +1,4 @@
-<!-- This file displays the additional filters box which gives users the option to 
+<!-- This file displays the additional filters box which gives users the option to
 choose their restaurant choosing based on ratings and distance.
 
 author @ Isaac Taylor

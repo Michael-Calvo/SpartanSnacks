@@ -2,7 +2,7 @@
 
 /**
  *  This class is designed for displaying restaurant data in a visually acceptable way for users
- * 
+ *
  * @author Isaac Taylor
  * Updated: 10/23/2019
  */
@@ -12,9 +12,11 @@ class RestaurantView {
 
     /**
      * loads the view containing results of users cuisine and filter choices
+
      * 
      * @param array $_restaurantArray - an array of restaurants
      * @param string $_color - a user selected color
+
      */
     static function loadView($_restaurantArray, $_color = null) {
         self::beforeRestaurantTable();
@@ -30,6 +32,7 @@ class RestaurantView {
 
         echo count($_restaurantArray) . " result (s) have been found for you.";
         echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter ()' placeholder='Find restaurant by name...'>
+
         <table id='restaurantTable'>";
 
         echo"<tr class='header'><th style='width:25%;'>Restaurant Name</th><th style='width:25%;'>Info</th>

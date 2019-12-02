@@ -33,8 +33,10 @@ author @ Badesha, Taylor, Calvo(Small Change)
                     <div class="inline">
 
                         <script type="text/javascript" src="JavaScript/Animate.js"></script>
+
                         <form name="checkForm" method="post" action="Controllers/SubmissionCatcher.php"> 
                             <div id="scroller" style="width:270px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
+
                                 <?php
                                 //displays a message to request that a user selects a cuisine
                                 if (isset($_POST['noSelection'])) {
