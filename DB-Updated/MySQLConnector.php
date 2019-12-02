@@ -1,15 +1,20 @@
 <?php
-
 include 'DBConnectorInterface.php';
-
+/**
+ * This implementation of DBConnectorInterface is for MySQL databases.
+ * @author Tammy Ogunkale
+ */
 class MySQLConnector implements DBConnectorInterface {
 
     const servername = "localhost";
     const username = "root";
-    const password = " ";
+    const password = "";
     const dbname = "spartansnacks";
     private static $conn;
-    
+
+    /**
+     * Initializes the connection to the database.
+     */
     function __construct() {
         // Create connection
         $conn = new mysqli(self::servername, self::username, self::password, self::dbname);
@@ -23,8 +28,13 @@ class MySQLConnector implements DBConnectorInterface {
         }
     }
 
-    public static function createObject($id, $password, $color) {
-        $sql = "INSERT INTO user VALUES ('$id', '$password', '$color')";
+    /**
+     * Runs the MySQL query for saving objects to the database.
+     * @param type $_ipAddress
+     * @param type $_color
+     */
+    public static function createObject($_ipAddress, $_color) {
+        $sql = "INSERT INTO user VALUES ('$_ipAddress', '$_color')";
 
         if (self::$conn->query($sql) === TRUE) {
             echo "New record created successfully";
@@ -33,34 +43,56 @@ class MySQLConnector implements DBConnectorInterface {
         }
     }
 
+    /**
+     * Runs the MySQL for reading objects from the database.
+     */
     public static function readObject() {
-        $sql = "SELECT id, password, color FROM user";
+        $sql = "SELECT ipAddress, color FROM user";
         $result = self::$conn->query($sql);
 
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
-                echo "id: " . $row["id"] . "password: " . $row["password"] . "color: " . $row["color"] . "<br>";
+                echo "ipAddress: " . $row["ipAddress"] . "color: " . $row["color"] . "<br>";
             }
         } else {
             echo "0 results";
         }
     }
 
-    public static function updateObject($color) {
-        $color = mint;
+    /**
+     * Runs the MySQL query for updating objects in the database.
+     * @param type $_ipAddress
+     * @param type $_color
+     */
+    public static function updateObject($_ipAddress = null, $_color = null) {
+        $sql = "UPDATE gocount SET count = count + 1 WHERE id = 1";
 
-        $sql = "UPDATE user SET color ='" + $color + "' WHERE id=234";
+        if (!empty($_ipAddress)) {
+            $sql1 = "UPDATE user SET color = '$_color' WHERE ipAddress = '$_ipAddress'";
+        }
 
-        if ($conn->query($sql) === TRUE) {
+        if (self::$conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
             echo "Error updating record: " . $conn->error;
         }
+
+        if (!empty($_ipAddress) && !empty($_color)) {
+            if (self::$conn->query($sql1) === TRUE) {
+                echo "Record updated successfully";
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
+        }
     }
 
-    public static function deleteObject($id) {
-        $sql = "DELETE FROM user WHERE id = '$id'";
+    /**
+     * Runs the MySQL query for deleting objects from the database.
+     * @param type $_ipAddress
+     */
+    public static function deleteObject($_ipAddress) {
+        $sql = "DELETE FROM user WHERE id = '$_ipAddress'";
 
         if (self::$conn->query($sql) === TRUE) {
             echo "Record deleted successfully";
@@ -68,83 +100,4 @@ class MySQLConnector implements DBConnectorInterface {
             echo "Error deleting record: " . self::$conn->error;
         }
     }
-
-//    /**
-//     * Generates a MySQL specific string for saving objects
-//     * to the database
-//     * @param type $_keyValuePairs
-//     * @param type $_table
-//     */
-//    public function createObject($_keyValuePairs, $_table) {
-//        $query = "INSERT INTO " + $_table;
-//        $names = "(";
-//        $values = "VALUES (";
-//        foreach ($_keyValuePairs as $key => $value) {
-//            $names += " `" + $key + "`, ";
-//            $values += " '" + $value + "', ";
-//        }
-//
-//        //Trim off the last comma.
-//        $names = substr($names, 0, -2);
-//        $values = substr($values, 0, -2);
-//        $names += ") ";
-//        $values += ")";
-//        $query += $names + $values;
-//
-//        //Execute the query
-//        $newKey = executeInsert($query);
-//        if ($newKey == -1) {
-//            print_r("Database Error: Could not create new record");
-//            return 0;
-//        }
-//        return $newKey;
-//    }
-//    /**
-//     * This helper function runs the query given by the above
-//     * method.
-//     * @param type $query
-//     */
-//    function executeInsert($query) {
-//        $key = -1;
-//        try {
-//           //needs updating
-//        } catch (Exception $exc) {
-//            echo $exc->getTraceAsString();
-//        }
-//        return $key;
-//    }
-//    /**
-//     * Generates a MySQL query for updating an object
-//     * to the database
-//     * @param type $_keyValuePairs
-//     * @param type $_uuid
-//     * @param type $_table
-//     */
-//    public function updateObject($_keyValuePairs, $_uuid, $_table) {
-//        $query = "UPDATE " + $_table + " SET";
-//        //iterate over map
-//        $updates = "";
-//        foreach ($_keyValuePairs as $key => $value) {
-//            $updates += " `" + $key + "` = \"" + $value + "\",";
-//        }
-//        //shed off the last comma
-//        $updates = substr($updates, 0, -1);
-//        $query = $query + $updates + " WHERE `uuid` = '" + $_uuid + "'";
-//        return MySQLConnector::executeUpdate($query);
-//    }
-//    /**
-//     * This helper method runs the query generated by the updateObject method
-//     * @param type $query
-//     */
-//    function executeUpdate($query) {
-//        $result = 0;
-//        try {
-//
-//        } catch (Exception $exc) {
-//            echo $exc->getTraceAsString();
-//        }
-//        //Result returns the number of rows affected. If no rows were affected,
-//        //then it returns false.
-//        return ($result > 0);
-//    }
 }
