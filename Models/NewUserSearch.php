@@ -1,11 +1,9 @@
 <?php
 
-require_once 'Database/DataStoreAdapter.php';
-
 //Author: Mike Calvo
 abstract class newUserSearch {
 
-    protected $IP;
+    protected $time;
     protected $userID;
     protected $uuid;
 
@@ -21,9 +19,9 @@ abstract class newUserSearch {
      * @param type $_userID
      */
     public function loadById($_userID) {
-        $map = array();
+        $map = new SplObjectStorage();
         $map["ID"] = $_userID;
-        return DataStoreAdapter.readObject($map);
+        return $this->loadByCondition(map);
     }
 
     /**
@@ -33,7 +31,7 @@ abstract class newUserSearch {
     public function loadByUuid($_uuid) {
         $map = array();
         $map["UUID"] = $_uuid;
-        return DataStoreAdapter.readObject($map);
+        return $this->loadByCondition(map);
     }
 
     /**
@@ -43,29 +41,25 @@ abstract class newUserSearch {
      */
     public function loadByCondition($_name, $_value) {
         $map = array();
-        $map[$_name] = $_value;
+        $_key = $_name;
 
-        return DataStoreAdapter.readObject($map);
+        $map[$_key] = $_value;
+
+        return $this->loadByCondition(map);
     }
 
     /**
      * save item to the database
      */
     public function save() {
-        if ($this->userID == 0) {
-            return DataStoreAdapter . createObject($this);
-        } else {
-            return DataStoreAdapter . updateObject($this);
-        }
-
-        return false;
+        
     }
 
     /**
      * delete item from the database
      */
     public function delete() {
-        return DataStoreAdapter . deleteObject($this);
+        
     }
 
     /**
@@ -86,8 +80,8 @@ abstract class newUserSearch {
         return $this->userID;
     }
 
-    function getIP() {
-        return $this->IP;
+    function getTime() {
+        return $this->time;
     }
 
     //============================== SETTER ==============================//
@@ -100,8 +94,8 @@ abstract class newUserSearch {
         $this->userID = $userID;
     }
 
-    function setIP($IP): void {
-        $this->IP = $IP;
+    function setTime($time): void {
+        $this->time = $time;
     }
 
 }
