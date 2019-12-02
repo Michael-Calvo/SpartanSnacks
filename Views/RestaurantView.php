@@ -2,17 +2,17 @@
 
 /**
  *  This class is designed for displaying restaurant data in a visually acceptable way for users
- * 
+ *
  * @author Isaac Taylor
  * Updated: 10/23/2019
  */
 class RestaurantView {
 
     const DEFAULT_VALUE = "No Info";
-    
+
     /**
      * loads the view containing results of users cuisine and filter choices
-     * 
+     *
      * @param array $restaurantArray - an array of restaurants
      */
     static function loadView ($restaurantArray) {
@@ -20,8 +20,8 @@ class RestaurantView {
         self::createRestaurantTable ($restaurantArray);
         self::afterRestaurantTable  ();
     }
-    
-    
+
+
     private function createRestaurantTable ($restaurantArray) {
        echo count ($restaurantArray) . " result (s) have been found for you.";
        echo " <input type='text' id='userInput' onkeyup='restaurantNameFilter ()' placeholder='Find restaurant by name...'>
@@ -48,7 +48,7 @@ class RestaurantView {
             if (isset ($restaurant['user_rating'])) {
                 $rating =  ($restaurant['user_rating'])['aggregate_rating'];
             }
-            
+
 
             echo" <tr><td>$name </td><td>";
             echo "<a href='" . $site . "' target ='_blank'>More Info</a>";

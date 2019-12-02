@@ -18,7 +18,8 @@ updated 10/30/2019
             <!--includes main navigation where users clicks buttons as "home" or "about".-->
             <?php             
             include 'MainNavigation.php';
-            ?>           
+            ?>            
+            <div id="content_area"> 
                  <center>
                     <h4 class="ml2">
                         <center>
@@ -30,7 +31,12 @@ updated 10/30/2019
                 </center>
                 <center>
                     <br>
+<<<<<<< HEAD
+                    <div class="inline">
                         <div style="width:750px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:rgba(255, 255, 255, .5);color:#714D03;border:4px double #DEBB07;">
+=======
+                        <div style="width:750px;height:350px;line-height:3em;overflow:auto;padding:5px;background-color:rgba(255, 255, 255, .5);color:#714D03;border:4px double #DEBB07;">
+>>>>>>> c368a990ec77fa95829f0797ff8175d153802ebe
                         <?php
                         echo "This website is a project designed to give UNCG students a restaurant "
                         . "recommendation in the Piedmont Triad area based on the type of cuisines they want with the choice to filter"
@@ -38,7 +44,9 @@ updated 10/30/2019
                         . " we will give you up to 20 restaurant recommendations!"
                         ?>
                         </div>
-                </center>           
+                    </div> 
+                </center>
+            </div>            
             <?php
             include 'Footer.php';
             ?>

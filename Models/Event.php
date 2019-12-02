@@ -7,23 +7,31 @@
  * Updated: 11/13/2019
  */
 require_once 'API/ZomatoAdapter.php';
-require_once 'Controllers/RestaurantController.php';
-require_once 'Settings.php';
+include 'Controllers/RestaurantController.php';
+const timezone = 'EST';
+
+//sets timezone to EST.
+date_default_timezone_set(timezone);
 
 //sets parameters for getrestaurant function.
 $DistanceView = 'Any Distance';
 $RatingView = 'Any Rating';  
 $CuisineArray = array(); //creates an array that we can store cuisine IDs into.
+ 
+//creates an array with cuisine names as keys to each day of the week.
+$days_array = array( "Sunday" => 'Chinese',"Monday" => 'Southern', "Tuesday" => 'Mexican',
+    "Wednesday" => 'Greek', "Thursday" => 'Japanese', "Friday" => 'Burger', "Saturday" => 'Italian');
+
+//sets the cuisine of the day depending on what day it is. date("l") returns a day(Monday). 
+$cuisineday = $days_array[date("l")];
 
 //creating an adapter object to look get filtered results.
 $forRestaurants = new ZomatoAdapter (new ZomatoApi ());
 $forCuisines = new ZomatoAdapter(new ZomatoApi());
 
-//grabs data of array of cuisines with ID.
+//grabs data of array of cuisines with ID. 
 $CuisinePairs = $forCuisines->getCuisineIdPairs();
- 
-//sets the cuisine of the day depending on what day it is. date("l") returns a day(Monday). 
-$cuisineday = $days_array[date("l")];
+
 echo "Cuisine of the Day: " , $cuisineday;
 
 //traverses through array of data and finds ID of the cuisine. 
