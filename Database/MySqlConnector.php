@@ -4,7 +4,14 @@ class mySqlConnector implements DataBaseInterface {
 
 //Author: Mike Calvo, Ike Quigley
 //Connects to the database
-    public function connectToDatabase() {
+
+
+    public function __construct(){
+        $this->connectToDatabase();
+}
+
+
+    function connectToDatabase() {
 
         $host = "localhost";
         $databaseName = "spartansnacks";
@@ -17,28 +24,26 @@ class mySqlConnector implements DataBaseInterface {
         if ($connect->connect_error) {
             exit("Failure" . $connect->connect_error);
         }
-
-        return $connect;
     }
 
     //Creates a new entry to the database using fields of the NewUserSearch Object
     public function createObject($newUS) {
          $sql = "INSERT INTO user VALUES ('$newUS->getID()','$newUS->getUUID(),'$newUS->getIP()','$newUS->getColor()'";
-         
+
          if (self::$conn->query($sql) === TRUE) {
             echo "New record created successfully";
         } else {
             echo "Error: " . $sql . "<br>" . self::$conn->error;
         }
-         
+
     }
 
     public function updateObject() {
-        
+
     }
 
     public function readOject() {
-        
+
     }
 
 }

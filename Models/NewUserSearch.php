@@ -4,7 +4,6 @@ require_once 'Database/DataStoreAdapter.php';
 //Author: Mike Calvo
 abstract class newUserSearch {
     
-    protected $IP;
     protected $userID;
     protected $uuid;
     protected $color;
@@ -12,7 +11,8 @@ abstract class newUserSearch {
     /**
      * Creates a user class and generates a uuid for it.
      */
-    public function UserClass() {
+   public function __construct() {
+       DataStoreAdapter::createConnector();
         $this->setUuid($this->generateUuid());
     }
 
@@ -44,10 +44,6 @@ abstract class newUserSearch {
     public function getUserID() {
         return $this->userID;
     }
-
-    function getIP() {
-        return $this->IP;
-    }
     
     public function getColor() {
         return $this->color;
@@ -64,9 +60,6 @@ abstract class newUserSearch {
         $this->userID = $userID;
     }
 
-    public function setTime($IP) {
-        $this->IP = $IP;
-    }
     public function setColor() {
         return $this->Color;
     }
