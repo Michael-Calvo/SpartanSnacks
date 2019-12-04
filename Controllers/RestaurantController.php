@@ -13,7 +13,7 @@ class RestaurantController {
     private $view;
 
     public function __construct() {
-        
+
     }
 
     public function invoke($_ipAddress, $_color) {

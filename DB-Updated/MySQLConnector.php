@@ -38,8 +38,10 @@ class MySQLConnector implements DBConnectorInterface {
 
         if (self::$conn->query($sql) === TRUE) {
             echo "New record created successfully";
+            return true;
         } else {
             echo "Error: " . $sql . "<br>" . self::$conn->error;
+            return false;
         }
     }
 
