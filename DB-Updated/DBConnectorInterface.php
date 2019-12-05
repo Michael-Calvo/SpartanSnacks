@@ -7,8 +7,8 @@
  * @author Tammy Ogunkale inspired by ike Quigely
  */
 interface DBConnectorInterface {
-    public static function createObject($_ipAddress, $_color);
-    public static function readObject();
-    public static function updateObject($_ipAddress = null, $_color = null);
-    public static function deleteObject($_ipAddress);
+    public function createObject($_ipAddress, $_color);
+    public function readObject();
+    public function updateObject($_ipAddress = null, $_color = null);
+    public function deleteObject($_ipAddress);
 }

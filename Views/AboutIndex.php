@@ -1,5 +1,5 @@
-<!--main direction to the AboutIndex. 
-Authors @ Badesha 
+<!--main direction to the AboutIndex.
+Authors @ Badesha
 Updated 10/25/2019
 -->
 <head>

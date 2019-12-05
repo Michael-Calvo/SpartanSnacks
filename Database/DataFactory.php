@@ -1,3 +1,0 @@
-<?php
-
-//Author: Mike Calvo

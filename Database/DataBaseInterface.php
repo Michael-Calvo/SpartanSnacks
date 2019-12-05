@@ -3,12 +3,12 @@
  * @author Mike Calvo, Ike Quigley
  */
 interface DataBaseInterface {
-    abstract function createObject(array $keypair, $table);
-    
-    abstract function readOject(array $keypair, $table);
-    
+    public function createObject($_ID, $_UUID,$_IP,$_COLOR);
+
+    public function readOject();
+
     public function updateObject(array $keypair, $uuid, $table);
-    
-    public function deleteObject($uuid);
+
+    public function deleteObject();
 
 }

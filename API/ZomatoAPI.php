@@ -2,7 +2,7 @@
 
 /**
  * This is an API that works through the Zomato service.
- * 
+ *
  * @author Isaac Taylor
  *  Updated: 11/02/2019
  */
@@ -35,7 +35,7 @@ class ZomatoApi {
 
     /**
      * This is the constructor for a ZomatoAPI
-     * 
+     *
      * @throws Exception when the CUISINE_URL or API_KEY is empty;
 
      */
@@ -67,9 +67,9 @@ class ZomatoApi {
     }
 
     /**
-     * This function recursively finds and returns a value by key in an array 
-     * 
-     * @param string $_key - the key 
+     * This function recursively finds and returns a value by key in an array
+     *
+     * @param string $_key - the key
      * @param array $_content  - an array of restaurant data
      * @return array|string - the value if found
      */
@@ -85,7 +85,7 @@ class ZomatoApi {
 
     /**
      * This function sets the data request url
-     * 
+     *
      * @param string $_url - the url data will be taken from
      */
     public static function setAndRequest ($_url) {
@@ -145,7 +145,7 @@ class ZomatoApi {
     }
 
     /**
-     *  @return int the maximum possible rating a restaurant may have 
+     *  @return int the maximum possible rating a restaurant may have
      */
     public static function maxRating () {
         return self::MAX_RATING;
@@ -159,7 +159,7 @@ class ZomatoApi {
     }
 
     /**
-     *  @return array the distances a restaurant may be from the subzone 
+     *  @return array the distances a restaurant may be from the subzone
      */
     public static function getDistances () {
         return self::DISTANCES;
@@ -173,23 +173,23 @@ class ZomatoApi {
     }
 
     /**
-     * 
-     * @return string the request url 
+     *
+     * @return string the request url
      */
     public static function getRequestUrl () {
         return self::$requestUrl;
     }
 
     /**
-     * 
+     *
      * @return array raw json Zomato data as an array
      */
     public static function getContent () {
         return self::$content;
     }
-    
+
     /**
-     * 
+     *
      * @return string the url containing data of cuisine types
      */
     public static function getCuisineUrl () {

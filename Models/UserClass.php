@@ -2,11 +2,11 @@
 
 /**
  * Description of UserClass
- * @author Mike Calvo, inspired by Ike Quigley 
- * 
+ * @author Mike Calvo, inspired by Ike Quigley
+ *
  * This class creates a user profile based on the filters chosen by the user.
  * Modeled after the DataObject class given in lecture
- * 
+ *
  *
  * @author Mike Calvo
  */
@@ -45,7 +45,7 @@ abstract class UserClass {
         $map["UUID"]=$_uuid;
         return $this->loadByCondition(map);
 
-        
+
     }
 
     /**
@@ -56,9 +56,9 @@ abstract class UserClass {
     public function loadByCondition($_name, $_value) {
          $map = new SplObjectStorage();
          $_key = $_name;
-         
+
          $map[$_key] = $_value;
-         
+
          return $this->loadByCondition(map);
     }
 
@@ -66,19 +66,19 @@ abstract class UserClass {
      * save item to the database
      */
     public function save() {
-        
+
     }
 
     /**
      * delete item from the database
      */
     public function delete() {
-        
+
     }
 
     /**
      * Uses php's com_create_guid to create a UUID
-     * 
+     *
      * @return type String of UUID
      */
     protected static function generateUuid() {
