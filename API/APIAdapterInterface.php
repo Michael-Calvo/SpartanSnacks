@@ -12,5 +12,4 @@ interface APIAdapterInterface {
 
     public function getRestaurantsByCIdsAndFilters ($_arrayOfCuisineIds, $distance,$_minRating);
 
-    
 }

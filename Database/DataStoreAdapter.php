@@ -4,9 +4,9 @@
 require_once 'Database/mySqlConnector.php';
 include 'Database/NewUserSearch.php';
 class DataStoreAdapter{
- 
+
     private $connector;
-    
+
 
     //This fuction is made to create an instance of the mySqlConnector
     public function createConnector(){

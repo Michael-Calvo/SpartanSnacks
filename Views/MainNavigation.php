@@ -1,5 +1,5 @@
 <!--
-Constructs the button links to the main navigation bar which will redirect to 
+Constructs the button links to the main navigation bar which will redirect to
 different pages of the website.
 
 author @ Badesha, Taylor
@@ -22,7 +22,7 @@ Updated: 10/25/2019
                . "<li><a href='./AboutIndex.php'>About</a></li>";
         }
         ?>
-    </ul>    
+    </ul>
 </nav>
 
 

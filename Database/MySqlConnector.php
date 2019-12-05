@@ -1,7 +1,7 @@
 <?php
 require_once 'Database/DataStoreAdapter.php';
 class mySqlConnector implements DataBaseInterface {
-    
+
 
 //Author: Mike Calvo, Ike Quigley
 //Connects to the database
@@ -29,7 +29,7 @@ class mySqlConnector implements DataBaseInterface {
     /**
      * Runs the MySQL query for saving objects to the database.
      * @param type $_NewUserSearch
-     * 
+     *
      */
     public function createObject($_NewUserSearch) {
         $_ID=$_NewUserSearch->getUserID();
@@ -60,7 +60,7 @@ class mySqlConnector implements DataBaseInterface {
             }
         } else {
             echo "0 results";
-        }  
+        }
     }
 
     /**
@@ -106,6 +106,6 @@ class mySqlConnector implements DataBaseInterface {
 
     }
 
- 
+
 
 }

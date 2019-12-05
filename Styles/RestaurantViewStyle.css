@@ -27,7 +27,7 @@
 
 #restaurantTable tr {
     /* Add a bottom border to all table rows */
-    border-bottom: 1px solid #ddd; 
+    border-bottom: 1px solid #ddd;
 }
 
 #restaurantTable tr.header, #restaurantTable tr:hover {

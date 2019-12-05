@@ -3,11 +3,11 @@ require_once 'Database/DataStoreAdapter.php';
 
 //Author: Mike Calvo
 abstract class newUserSearch {
-    
+
     protected $userID;
     protected $uuid;
     protected $color;
-    
+
     /**
      * Creates a user class and generates a uuid for it.
      */
@@ -44,7 +44,7 @@ abstract class newUserSearch {
     public function getUserID() {
         return $this->userID;
     }
-    
+
     public function getColor() {
         return $this->color;
     }
