@@ -30,11 +30,11 @@ class MySQLConnector implements DBConnectorInterface {
 
     /**
      * Runs the MySQL query for saving objects to the database.
-     * @param type $_ipAddress
-     * @param type $_color
+     * @param type $_NewUserSearch
+     * 
      */
-    public static function createObject($_ipAddress, $_color) {
-        $sql = "INSERT INTO user VALUES ('$_ipAddress', '$_color')";
+    public static function createObject($_NewUserSearch) {
+        $sql = "INSERT INTO user VALUES ('$newUS->getID()','$newUS->getUUID(),'$newUS->getColor()')";
 
         if (self::$conn->query($sql) === TRUE) {
             echo "New record created successfully";
@@ -89,10 +89,11 @@ class MySQLConnector implements DBConnectorInterface {
 
     /**
      * Runs the MySQL query for deleting objects from the database.
-     * @param type $_ipAddress
+     * @param type $_NewUserSearch
      */
-    public static function deleteObject($_ipAddress) {
-        $sql = "DELETE FROM user WHERE id = '$_ipAddress'";
+    public static function deleteObject($_NewUserSearch) {
+        $User_ID = _NewUserSearch.getID;
+        $sql = "DELETE FROM user WHERE id = '$User_ID'";
 
         if (self::$conn->query($sql) === TRUE) {
             echo "Record deleted successfully";

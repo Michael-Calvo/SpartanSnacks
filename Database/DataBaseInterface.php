@@ -7,6 +7,8 @@ interface DataBaseInterface {
     
     public function readOject();
     
-    public function updateObject(array $keypair, $uuid, $table);
+    public function updateObject(array $keypair, $uuid, $table);   
+    
+    public function deleteObject();
 
 }
