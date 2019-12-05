@@ -104,6 +104,7 @@ class ZomatoAdapter implements APIAdapterInterface {
         }
         return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, ZomatoApi::getRatings()["$_minRating"]);
     }
+    
 
     /**
      * This is a helper function that converts miles to meters.

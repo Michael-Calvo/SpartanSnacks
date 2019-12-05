@@ -7,7 +7,7 @@ updated 10/25/2019
 </head>
 <?php
 $homeUrl = '/index.php';
-require_once'API/ZomatoAdapter.php';
+require_once'API/RestaurantApiAdapter.php';
 $title = "SpartanSnacks - Restaurant Finder";
 $content = "Welcome to SpartanSnacks!";
 //connect to ZomatoApi using the ZomatoAdapter

@@ -6,7 +6,7 @@
  * @author Badesha, Calvo(small change)
  * Updated: 11/13/2019
  */
-require_once 'API/ZomatoAdapter.php';
+require_once 'API/RestaurantApiAdapter.php';
 include 'Controllers/RestaurantController.php';
 const timezone = 'EST';
 

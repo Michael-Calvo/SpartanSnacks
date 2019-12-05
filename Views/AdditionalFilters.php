@@ -27,5 +27,15 @@ Updated: 10/23/2019
         <option value="Within 15 miles">Within 15 miles</option>
     </select>
 
+    <label for="selectedColor"><b>Choose a color that best represents<br> your current mood</b></label>
+    <select  name = "selectedColor" id = "selectedColor" >
+        <option default > --None-- </option>
+        <option value="Red">Red</option>
+        <option value="Orange">Orange</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Green">Green</option>
+        <option value="Blue">Blue</option>
+    </select>
+
     <button  type="submit" class="btn">Go!</button>
 </div>
