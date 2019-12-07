@@ -28,7 +28,7 @@ class mySqlConnector implements DataBaseInterface {
         }
     }
 
-    /**
+     /**
      * Runs the MySQL query for saving objects to the database.
      * @param type $_NewUserSearch
      *
@@ -37,17 +37,17 @@ class mySqlConnector implements DataBaseInterface {
         if ($_NewUserSearch == null) {
             echo "Search is Null!";
         }
-        $_ID = $_NewUserSearch->getUserID();
         $_UUID = $_NewUserSearch->getUUID();
         $_color = $_NewUserSearch->getColor();
-        $_sql = "INSERT INTO user VALUES ('$_ID','$_UUID,'$_color')";
+        $_sql = "INSERT INTO user VALUES ('$_UUID,'$_color')";
 
         if (self::$conn->query($_sql) === TRUE) {
-
+            $_UserID = self::$conn->insert_id;
             echo "New record created successfully";
         } else {
             echo "Error: " . $_sql . "<br>" . self::$conn->error;
         }
+        return $_UserID;
     }
 
     /**

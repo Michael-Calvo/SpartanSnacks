@@ -16,7 +16,8 @@ class DataStoreAdapter {
     //This is used to create a new object using the data from the NewUserSearch
     //Then put it through the MySqlConnector so it can be put in the database
     public function createObject($_NewUserSearch) {
-        $this->connector->createObject($_NewUserSearch);
+        $_UserID = $this->connector->createObject($_NewUserSearch);
+        $_NewUserSearch->setUserID($_UserID);
     }
 
     //Suppose to read object. Ike creates a generic type object and returns it.
@@ -34,7 +35,7 @@ class DataStoreAdapter {
     }
 
     public function deleteObject($_NewUserSearch) {
-        return DataStoreAdapter::updateObject($_NewUserSearch);
+        return $this->connector->updateObject($_NewUserSearch);
     }
 
 }
