@@ -8,28 +8,29 @@ class NewUserSearch {
     protected $userID;
     protected $uuid;
     protected $color;
+    protected $dataStoreAdapter;
 
     /**
      * Creates a user class and generates a uuid for it.
      */
-    public function __construct($_ID, $_color) {
+    public function __construct($_color) {
         $dataAdapter = new DataStoreAdapter();
         $dataAdapter->createConnector();
+        $this->dataStoreAdapter = $dataAdapter;
         $this->setUuid($this->generateUuid());
-        $this->setUserID($_ID);
         $this->setColor($_color);
+        return $this->dataStoreAdapter;
     }
 
     /**
      * save item to the database
      */
     public function save() {
-        $dataAdapter = new DataStoreAdapter();
 
         if ($this->userID == 0) {
-            return $dataAdapter->createObject($this);
+            return $this->dataStoreAdapter->createObject($this);
         } else {
-            return $dataAdapter->updateObject($this);
+            return $this->dataStoreAdapter->updateObject($this);
         }
     }
 
