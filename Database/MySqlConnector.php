@@ -1,16 +1,17 @@
 <?php
+
 require_once 'Database/DataStoreAdapter.php';
+require_once 'Database/DataBaseInterface.php';
+
 class mySqlConnector implements DataBaseInterface {
 
-
-//Author: Mike Calvo, Ike Quigley
+//Author: Mike Calvo, Ike Quigley, Tammy Ogunkale
 //Connects to the database
 
 
-    public function __construct(){
+    public function __construct() {
         $this->connectToDatabase();
-}
-
+    }
 
     function connectToDatabase() {
 
@@ -20,37 +21,40 @@ class mySqlConnector implements DataBaseInterface {
         $username = "root";
         //To create the connection
         $connect = new mysqli($host, $username, $password, $databaseName);
-
+        echo "connection Sucessful";
         //Connection Checking, if there is a connection error, print the error
         if ($connect->connect_error) {
             exit("Failure" . $connect->connect_error);
         }
     }
+
     /**
      * Runs the MySQL query for saving objects to the database.
      * @param type $_NewUserSearch
      *
      */
     public function createObject($_NewUserSearch) {
-        $_ID=$_NewUserSearch->getUserID();
-        $_UUID=$_NewUserSearch->getUUID();
-        $_color=$_NewUserSearch->getColor();
+        if ($_NewUserSearch == null) {
+            echo "Search is Null!";
+        }
+        $_ID = $_NewUserSearch->getUserID();
+        $_UUID = $_NewUserSearch->getUUID();
+        $_color = $_NewUserSearch->getColor();
         $_sql = "INSERT INTO user VALUES ('$_ID','$_UUID,'$_color')";
 
-        if (self::$conn->query($sql) === TRUE) {
+        if (self::$conn->query($_sql) === TRUE) {
 
             echo "New record created successfully";
         } else {
-            echo "Error: " . $sql . "<br>" . self::$conn->error;
+            echo "Error: " . $_sql . "<br>" . self::$conn->error;
         }
-
     }
 
     /**
      * Runs the MySQL for reading objects from the database.
      */
-     public function readOject() {
-       $sql = "SELECT ipAddress, color FROM user";
+    public function readObject() {
+        $sql = "SELECT ipAddress, color FROM user";
         $result = self::$conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -94,7 +98,7 @@ class mySqlConnector implements DataBaseInterface {
      * Runs the MySQL query for deleting objects from the database.
      * @param type $_NewUserSearch
      */
-    public static function deleteObject($_NewUserSearch) {
+    public function deleteObject($_NewUserSearch) {
         $User_ID = $_NewUserSearch->getUserID();
         $sql = "DELETE FROM user WHERE id = '$User_ID'";
 
@@ -103,9 +107,6 @@ class mySqlConnector implements DataBaseInterface {
         } else {
             echo "Error deleting record: " . self::$conn->error;
         }
-
     }
-
-
 
 }

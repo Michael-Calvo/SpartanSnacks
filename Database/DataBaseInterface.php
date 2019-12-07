@@ -1,14 +1,14 @@
 <?php
 /*
- * @author Mike Calvo, Ike Quigley
+ * @author Mike Calvo, Ike Quigley, , Tammy Ogunkale
  */
 interface DataBaseInterface {
-    public function createObject($_ID, $_UUID,$_IP,$_COLOR);
+    public function createObject($newUserSearch);
 
-    public function readOject();
+    public function readObject();
 
-    public function updateObject(array $keypair, $uuid, $table);
+    public function updateObject($_ipAddress = null, $_color = null);
 
-    public function deleteObject();
+    public function deleteObject($newUserSearch);
 
 }

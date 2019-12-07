@@ -2,42 +2,39 @@
 
 //author Mike Calvo, Ike Quigly
 require_once 'Database/mySqlConnector.php';
-include 'Database/NewUserSearch.php';
-class DataStoreAdapter{
+include_once 'Model/NewUserSearch.php';
 
-    private $connector;
+class DataStoreAdapter {
 
+    protected $connector;
 
     //This fuction is made to create an instance of the mySqlConnector
-    public function createConnector(){
-    $connector = new MySQLConnector();
-    $this->connector = $connector;
-    return $this->connector;
+    public function createConnector() {
+        $this->connector = new MySQLConnector();
     }
 
     //This is used to create a new object using the data from the NewUserSearch
     //Then put it through the MySqlConnector so it can be put in the database
-    public function createObject($newSearch){
-
-        $this->connector->createObject($newSearch);
+    public function createObject($_NewUserSearch) {
+        $this->connector->createObject($_NewUserSearch);
     }
+
     //Suppose to read object. Ike creates a generic type object and returns it.
     //Not sure why.
-    public function readObject($newSearch){
-        $results = $this->connector->readObject($newSearch);
+    public function readObject($_NewUserSearch) {
+        $results = $this->connector->readObject($_NewUserSearch);
         return $results;
     }
+
     //returns the update object for the sql connector using a
     //get Properties from the data factory, the UUID, and a getDataTable.
     //How to do properties and datatable is still in the air.
-    public function updateObject($newSearch){
-        return $this->connector->updateObject($newSearch);
-    }
-    public function deleteObject($newSearch){
-        return DataStoreAdapter::updateObject($newSearch);
+    public function updateObject($_NewUserSearch) {
+        return $this->connector->updateObject($_NewUserSearch);
     }
 
-
-
+    public function deleteObject($_NewUserSearch) {
+        return DataStoreAdapter::updateObject($_NewUserSearch);
+    }
 
 }
