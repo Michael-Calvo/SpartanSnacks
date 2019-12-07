@@ -7,46 +7,61 @@ class mySqlConnector implements DataBaseInterface {
 
 //Author: Mike Calvo, Ike Quigley, Tammy Ogunkale
 //Connects to the database
+    const servername = "localhost";
+    const username = "root";
+    const password = "";
+    const dbname = "spartansnacks";
 
+    private static $conn;
 
     public function __construct() {
         $this->connectToDatabase();
     }
-
+/**
+ * Function to connect to the database.
+ */
     function connectToDatabase() {
 
-        $host = "localhost";
-        $databaseName = "spartansnacks";
-        $password = "";
-        $username = "root";
+        $host = self::servername;
+        $databaseName = self::dbname;
+        $password = self::password;
+        $username = self::username;
         //To create the connection
-        $connect = new mysqli($host, $username, $password, $databaseName);
+        $conn = new mysqli($host, $username, $password, $databaseName);
+        self::$conn = $conn;
         echo "connection Sucessful";
         //Connection Checking, if there is a connection error, print the error
-        if ($connect->connect_error) {
-            exit("Failure" . $connect->connect_error);
+        if ($conn->connect_error) {
+            exit("Failure" . $conn->connect_error);
         }
     }
 
-     /**
+    /**
      * Runs the MySQL query for saving objects to the database.
      * @param type $_NewUserSearch
      *
+     * @return the User ID from the SQL database. 
      */
     public function createObject($_NewUserSearch) {
         if ($_NewUserSearch == null) {
             echo "Search is Null!";
         }
+        //Grabbing the data from the new user search object.
         $_UUID = $_NewUserSearch->getUUID();
         $_color = $_NewUserSearch->getColor();
-        $_sql = "INSERT INTO user VALUES ('$_UUID,'$_color')";
+        $_sql = "INSERT INTO spartandata (UUID, Color) VALUES ('$_UUID', '$_color')";
 
         if (self::$conn->query($_sql) === TRUE) {
+            
             $_UserID = self::$conn->insert_id;
             echo "New record created successfully";
         } else {
             echo "Error: " . $_sql . "<br>" . self::$conn->error;
         }
+        
+        //Updating go counter whenever a new entry is made.
+        self::updateCount();
+        
         return $_UserID;
     }
 
@@ -91,6 +106,15 @@ class mySqlConnector implements DataBaseInterface {
             } else {
                 echo "Error updating record: " . $conn->error;
             }
+        }
+    }
+
+    public function updateCount() {
+        $_sql = "UPDATE goCount SET count = count + 1 WHERE 1";
+        if (self::$conn->query($_sql) === TRUE) {
+            echo "Count Record updated successfully";
+        } else {
+            echo "Error updating count record: " . self::$conn->error;
         }
     }
 

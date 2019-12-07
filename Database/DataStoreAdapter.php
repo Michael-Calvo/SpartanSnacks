@@ -16,11 +16,9 @@ class DataStoreAdapter {
     //This is used to create a new object using the data from the NewUserSearch
     //Then put it through the MySqlConnector so it can be put in the database
     public function createObject($_NewUserSearch) {
-        //Test
-        echo "{$_NewUserSearch->getColor()}";
-        
         $_UserID = $this->connector->createObject($_NewUserSearch);
         $_NewUserSearch->setUserID($_UserID);
+        echo "{$_NewUserSearch->getUserID()}";
     }
 
     //Suppose to read object. Ike creates a generic type object and returns it.
