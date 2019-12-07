@@ -2,7 +2,7 @@
 
 //author Mike Calvo, Ike Quigly
 require_once 'Database/mySqlConnector.php';
-include_once 'Model/NewUserSearch.php';
+include_once 'Models/NewUserSearch.php';
 
 class DataStoreAdapter {
 
@@ -16,6 +16,9 @@ class DataStoreAdapter {
     //This is used to create a new object using the data from the NewUserSearch
     //Then put it through the MySqlConnector so it can be put in the database
     public function createObject($_NewUserSearch) {
+        //Test
+        echo "{$_NewUserSearch->getColor()}";
+        
         $_UserID = $this->connector->createObject($_NewUserSearch);
         $_NewUserSearch->setUserID($_UserID);
     }
