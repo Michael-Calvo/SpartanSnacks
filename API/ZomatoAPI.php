@@ -6,7 +6,7 @@
  * @author Isaac Taylor
  *  Updated: 11/02/2019
  */
-class ZomatoApi {
+class Api {
 
     protected const API_KEY = 'cf64d9f9aa1cd2e3b7c5bbf60f896a44';
     //Piedmont Triad

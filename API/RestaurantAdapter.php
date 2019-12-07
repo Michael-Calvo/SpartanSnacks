@@ -4,12 +4,13 @@ include_once "ZomatoAPI.php";
 include_once "APIAdapterInterface.php";
 
 /**
- * This class connects to the ZomatoApi
+ * This class connects to the restaurantAPI
  *
  * @author Isaac Taylor
  *  Updated: 11/09/2019
  */
-class ZomatoAdapter implements APIAdapterInterface {
+
+class RestaurantAdapter implements APIAdapterInterface {
 
     private $zomato;
 
@@ -18,7 +19,7 @@ class ZomatoAdapter implements APIAdapterInterface {
      *
      * @param ZomatoApi $_zomato
      */
-    public function __construct (ZomatoApi $_zomato) {
+    public function __construct (API $_zomato) {
         $this->zomato = $_zomato;
     }
 
@@ -60,7 +61,7 @@ class ZomatoAdapter implements APIAdapterInterface {
      * @return array an array of cuisines mapped to their ids
      */
     public function getCuisineIdPairs () {
-        $this->zomato->setAndRequest (ZomatoAPI::getCuisineUrl());
+        $this->zomato->setAndRequest (API::getCuisineUrl());
         return $this->zomato->jParser ('cuisines', $this->zomato->getContent ());
     }
 
@@ -76,14 +77,14 @@ class ZomatoAdapter implements APIAdapterInterface {
      */
     public function getRestaurantsByCIdsAndFilters ($_arrayOfCuisineIds, $_distance, $_minRating) {
         //checks to see if the method is recieving a valid distance
-        if (!isset (ZomatoApi::getDistances()["$_distance"])) {
+        if (!isset (API::getDistances()["$_distance"])) {
             throw new Exception ('Invalid distance - review ZomatoApi DISTANCES');
         }
         //construction of request url with filters
         $urlFirstHalf = "https://developers.zomato.com/api/v2.1/search?entity_id="
-                . ZomatoApi::getSubzoneId() . "&entity_type=" . ZomatoApi::getEntityType() .
-                "=" . ZomatoApi::getLatitude() . "&lon=" . ZomatoApi::getLongitude() .
-                "&radius=" . $this->milesToMeters (ZomatoApi::getDistances()["$_distance"]) .
+                . API::getSubzoneId() . "&entity_type=" . API::getEntityType() .
+                "=" . API::getLatitude() . "&lon=" . API::getLongitude() .
+                "&radius=" . $this->milesToMeters (API::getDistances()["$_distance"]) .
                 "&cuisines=";
         //continued construction of request url with cuisines
         $urlSecondHalf = "";
@@ -102,9 +103,9 @@ class ZomatoAdapter implements APIAdapterInterface {
             $this->zomato->setAndRequest ($urlFirstHalf . $urlSecondHalf);
             $reccomendedRestaurants = $this->zomato->jParser ('restaurants', $this->zomato->getContent ());
         }
-        return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, ZomatoApi::getRatings()["$_minRating"]);
+        return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, API::getRatings()["$_minRating"]);
     }
-    
+
 
     /**
      * This is a helper function that converts miles to meters.
@@ -113,7 +114,7 @@ class ZomatoAdapter implements APIAdapterInterface {
      */
     public function milesToMeters ($_miles) {
         // number of miles multiplied by converstion factor
-        return $_miles * ZomatoApi::getMilesAsMeters();
+        return $_miles * API::getMilesAsMeters();
     }
 
     /**

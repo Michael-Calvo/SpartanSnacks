@@ -5,4 +5,3 @@ function colorChange() {
     var color = document.getElementById('selectedColor').innerHTML;
     tableBorder.style.borderColor = "" + color;
 }
-

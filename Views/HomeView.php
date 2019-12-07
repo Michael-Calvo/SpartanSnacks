@@ -34,7 +34,7 @@ author @ Badesha, Taylor, Calvo(Small Change)
 
                         <script type="text/javascript" src="JavaScript/Animate.js"></script>
 
-                        <form name="checkForm" method="post" action="Controllers/SubmissionCatcher.php"> 
+                        <form name="checkForm" method="post" action="Controllers/SubmissionCatcher.php">
                             <div id="scroller" style="width:270px;height:300px;line-height:3em;overflow:auto;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;float:left">
 
                                 <?php
@@ -66,7 +66,7 @@ author @ Badesha, Taylor, Calvo(Small Change)
             </div>
             <div id="sidebar" style="border:4px double #000000;">
              <?php
-             include 'Models/Event.php';
+             include 'Controllers/EventController.php';
              ?>
             </div>
             <?php

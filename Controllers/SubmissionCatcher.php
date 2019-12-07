@@ -7,7 +7,7 @@
  * @author Taylor,Badesha
  * Updated: 11/02/2019
  */
-require_once'../API/RestaurantApiAdapter.php';
+require_once'../API/RestaurantAdapter.php';
 include 'RestaurantController.php';
 
 $rating = "";
@@ -59,9 +59,9 @@ if (empty($cuisineCB)) {
 }
 
 //creating an adapter object to look get filtered results
-$forRestaurants = new ZomatoAdapter(new ZomatoApi());
+$forRestaurants = new RestaurantAdapter(new API());
 
-//*an array of restaurants 
+//*an array of restaurants
 $restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters($cuisineCB, $distance, $rating);
 
 //creates new instance of restaurant controller and load the view using method from RestaurantController

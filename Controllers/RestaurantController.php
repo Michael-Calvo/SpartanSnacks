@@ -13,7 +13,7 @@ class RestaurantController {
     private $view;
 
     public function __construct() {
-        
+
     }
 
     public function invoke($_ipAddress, $_color) {
@@ -27,7 +27,7 @@ class RestaurantController {
     }
 
    /**
-    * 
+    *
     * @param type $_restaurantArray
     * @param type $_color
     */
@@ -36,7 +36,7 @@ class RestaurantController {
         $view = new RestaurantView();
         $view::loadView($_restaurantArray, $_color);
     }
-    
+
     public static function loadEventView($restaurantArray){
         include 'Views/EventView.php';
         $view = new EventView();
