@@ -19,14 +19,6 @@ Updated: 10/23/2019
         <option value="2/5 or better">2/5 or better</option>
     </select><br><br>
 
-    <label for="distance"><b>By Distance:</b></label>
-    <select name="selectDistance">
-        <option value="Any Distance">Any Distance</option>
-        <option value="Within 5 miles">Within 5 miles</option>
-        <option value="Within 10 miles">Within 10 miles</option>
-        <option value="Within 15 miles">Within 15 miles</option>
-    </select>
-
     <label for="selectedColor"><b>Choose a color that best represents<br> your current mood</b></label>
     <select  name = "selectedColor" id = "selectedColor" >
         <option default > --None-- </option>

@@ -1,5 +1,5 @@
 function restaurantNameFilter() {
-    // Declare variables 
+    // Declare variables
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("userInput");
     filter = input.value.toUpperCase();

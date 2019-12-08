@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Database/DataStoreAdapter.php';
+require_once '../Database/DataStoreAdapter.php';
 
 //Author: Mike Calvo
 class NewUserSearch {

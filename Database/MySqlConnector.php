@@ -1,9 +1,9 @@
 <?php
 
-require_once 'Database/DataStoreAdapter.php';
-require_once 'Database/DataBaseInterface.php';
+require_once '../Database/DataStoreAdapter.php';
+require_once '../Database/DataBaseInterface.php';
 
-class mySqlConnector implements DataBaseInterface {
+class MySqlConnector implements DataBaseInterface {
 
 //Author: Mike Calvo, Ike Quigley, Tammy Ogunkale
 //Connects to the database
@@ -30,7 +30,6 @@ class mySqlConnector implements DataBaseInterface {
         //To create the connection
         $conn = new mysqli($host, $username, $password, $databaseName);
         self::$conn = $conn;
-        echo "connection Sucessful";
         //Connection Checking, if there is a connection error, print the error
         if ($conn->connect_error) {
             exit("Failure" . $conn->connect_error);
@@ -53,9 +52,7 @@ class mySqlConnector implements DataBaseInterface {
         $sql = "INSERT INTO spartandata (UUID, Color) VALUES ('$UUID', '$color')";
 
         if (self::$conn->query($sql) === TRUE) {
-
             $_UserID = self::$conn->insert_id;
-            echo "New record created successfully";
         } else {
             echo "Error: " . $sql . "<br>" . self::$conn->error;
         }
@@ -67,7 +64,7 @@ class mySqlConnector implements DataBaseInterface {
     }
 
     /**
-     * Using a UUID, an element is fetched from the database and displayed. 
+     * Using a UUID, an element is fetched from the database and displayed.
      */
     public function readObject($_UUID) {
         $sql = "SELECT * FROM spartandata WHERE UUID = '$_UUID'";
@@ -102,9 +99,7 @@ class mySqlConnector implements DataBaseInterface {
     public function updateCount() {
         $sql = "UPDATE goCount SET count = count + 1 WHERE 1";
 
-        if (self::$conn->query($sql) === TRUE) {
-            echo "Count Record updated successfully";
-        } else {
+        if (self::$conn->query($sql) === FALSE) {
             echo "Error updating count record: " . self::$conn->error;
         }
     }
@@ -116,9 +111,7 @@ class mySqlConnector implements DataBaseInterface {
     public function deleteObject($_UUID) {
         $sql = "DELETE FROM spartandata WHERE UUID = '$_UUID'";
 
-        if (self::$conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        } else {
+        if (self::$conn->query($sql) === FALSE) {
             echo "Error deleting record: " . self::$conn->error;
         }
     }

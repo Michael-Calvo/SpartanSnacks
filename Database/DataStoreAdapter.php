@@ -1,8 +1,8 @@
 <?php
 
 //author Mike Calvo, Ike Quigly
-require_once 'Database/mySqlConnector.php';
-include_once 'Model/NewUserSearch.php';
+require_once '../Database/MySqlConnector.php';
+include_once '../Models/NewUserSearch.php';
 
 class DataStoreAdapter {
 
@@ -25,7 +25,6 @@ class DataStoreAdapter {
     //Not sure why.
     public function readObject($_UUID) {
         $this->connector->readObject($_UUID);
-        
     }
 
     //returns the update object for the sql connector using a
@@ -33,7 +32,7 @@ class DataStoreAdapter {
     //How to do properties and datatable is still in the air.
     public function updateObject($_NewUserSearch) {
         $newColor = $_NewUserSearch->getColor();
-        return $this->connector->updateObject($_NewUserSearch,$newColor);
+        return $this->connector->updateObject($_NewUserSearch, $newColor);
     }
 
     public function deleteObject($_UUID) {
