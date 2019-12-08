@@ -1,111 +1,119 @@
 <?php
-require_once 'Database/DataStoreAdapter.php';
-class mySqlConnector implements DataBaseInterface {
 
+require_once '../Database/DataStoreAdapter.php';
+require_once '../Database/DataBaseInterface.php';
 
-//Author: Mike Calvo, Ike Quigley
+class MySqlConnector implements DataBaseInterface {
+
+//Author: Mike Calvo, Ike Quigley, Tammy Ogunkale
 //Connects to the database
+    const servername = "localhost";
+    const username = "root";
+    const password = "";
+    const dbname = "spartansnacks";
 
+    private static $conn;
 
-    public function __construct(){
+    public function __construct() {
         $this->connectToDatabase();
-}
+    }
 
-
+    /**
+     * Function to connect to the database.
+     */
     function connectToDatabase() {
 
-        $host = "localhost";
-        $databaseName = "spartansnacks";
-        $password = "";
-        $username = "root";
+        $host = self::servername;
+        $databaseName = self::dbname;
+        $password = self::password;
+        $username = self::username;
         //To create the connection
-        $connect = new mysqli($host, $username, $password, $databaseName);
-
+        $conn = new mysqli($host, $username, $password, $databaseName);
+        self::$conn = $conn;
         //Connection Checking, if there is a connection error, print the error
-        if ($connect->connect_error) {
-            exit("Failure" . $connect->connect_error);
+        if ($conn->connect_error) {
+            exit("Failure" . $conn->connect_error);
         }
     }
+
     /**
      * Runs the MySQL query for saving objects to the database.
      * @param type $_NewUserSearch
      *
+     * @return the User ID from the SQL database.
      */
     public function createObject($_NewUserSearch) {
-        $_ID=$_NewUserSearch->getUserID();
-        $_UUID=$_NewUserSearch->getUUID();
-        $_color=$_NewUserSearch->getColor();
-        $_sql = "INSERT INTO user VALUES ('$_ID','$_UUID,'$_color')";
+        if ($_NewUserSearch == null) {
+            echo "Search is Null!";
+        }
+        //Grabbing the data from the new user search object.
+        $UUID = $_NewUserSearch->getUUID();
+        $color = $_NewUserSearch->getColor();
+        $sql = "INSERT INTO spartandata (UUID, Color) VALUES ('$UUID', '$color')";
 
         if (self::$conn->query($sql) === TRUE) {
-
-            echo "New record created successfully";
+            $_UserID = self::$conn->insert_id;
         } else {
             echo "Error: " . $sql . "<br>" . self::$conn->error;
         }
 
+        //Updating go counter whenever a new entry is made.
+        self::updateCount();
+
+        return $_UserID;
     }
 
     /**
-     * Runs the MySQL for reading objects from the database.
+     * Using a UUID, an element is fetched from the database and displayed.
      */
-     public function readOject() {
-       $sql = "SELECT ipAddress, color FROM user";
-        $result = self::$conn->query($sql);
+    public function readObject($_UUID) {
+        $sql = "SELECT * FROM spartandata WHERE UUID = '$_UUID'";
+        $dataEntry = self::$conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                echo "ipAddress: " . $row["ipAddress"] . "color: " . $row["color"] . "<br>";
+        if ($dataEntry->num_rows > 0) {
+            while ($row = $dataEntry->fetch_assoc()) {
+                echo " ID: " . $row["ID"] . " UUID: " . $row["UUID"] . " Color: " . $row["Color"] . "<br>";
             }
         } else {
-            echo "0 results";
+            echo "Element Not Found";
         }
     }
 
     /**
      * Runs the MySQL query for updating objects in the database.
-     * @param type $_ipAddress
+     * @param type $_NewUserSearch
      * @param type $_color
      */
-    public function updateObject($_ipAddress = null, $_color = null) {
-        $sql = "UPDATE gocount SET count = count + 1 WHERE id = 1";
-
-        if (!empty($_ipAddress)) {
-            $sql1 = "UPDATE user SET color = '$_color' WHERE ipAddress = '$_ipAddress'";
-        }
+    public function updateObject($_NewUserSearch, $_color) {
+        $UUID = $_NewUserSearch->getUUID();
+        $sql = "UPDATE spartandata SET Color = '$_color' WHERE UUID = '$UUID'";
 
         if (self::$conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
-            echo "Error updating record: " . $conn->error;
+            echo "Error updating record: " . self::$conn->error;
         }
+    }
 
-        if (!empty($_ipAddress) && !empty($_color)) {
-            if (self::$conn->query($sql1) === TRUE) {
-                echo "Record updated successfully";
-            } else {
-                echo "Error updating record: " . $conn->error;
-            }
+    //Updates the database table for the amount of times Go is clicked.
+    public function updateCount() {
+        $sql = "UPDATE goCount SET count = count + 1 WHERE 1";
+
+        if (self::$conn->query($sql) === FALSE) {
+            echo "Error updating count record: " . self::$conn->error;
         }
     }
 
     /**
      * Runs the MySQL query for deleting objects from the database.
-     * @param type $_NewUserSearch
+     * @param type $_UUID
      */
-    public static function deleteObject($_NewUserSearch) {
-        $User_ID = $_NewUserSearch->getUserID();
-        $sql = "DELETE FROM user WHERE id = '$User_ID'";
+    public function deleteObject($_UUID) {
+        $sql = "DELETE FROM spartandata WHERE UUID = '$_UUID'";
 
-        if (self::$conn->query($sql) === TRUE) {
-            echo "Record deleted successfully";
-        } else {
+        if (self::$conn->query($sql) === FALSE) {
             echo "Error deleting record: " . self::$conn->error;
         }
-
     }
-
-
 
 }

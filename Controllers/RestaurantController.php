@@ -16,16 +16,6 @@ class RestaurantController {
 
     }
 
-    public function invoke($_ipAddress, $_color) {
-        include '../DB-Updated/MySQLConnector.php';
-
-        $userColor = new MySQLConnector();
-        $userColor->createObject($_ipAddress, $_color);
-
-        $count = new MySQLConnector();
-        $count->updateObject();
-    }
-
    /**
     *
     * @param type $_restaurantArray

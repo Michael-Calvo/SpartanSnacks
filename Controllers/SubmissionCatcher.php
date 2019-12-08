@@ -10,11 +10,11 @@
 
 require_once '../API/RestaurantAdapter.php';
 require_once 'RestaurantController.php';
+require_once '../Models/NewUserSearch.php';
 
 $rating = "";
 $cuisineCB = null;
 $color = "";
-$ipAddress = "123";
 
 
 if (isset($_POST['selectRating'])) {
@@ -31,7 +31,6 @@ if (isset($_POST['checkboxArray'])) {
 if (isset($_POST['selectRating'])) {
     $rating = $_POST['selectRating'];
     $color = "";
-    $ipAddress = "123";
 }
 
 if (isset($_POST['checkboxArray'])) {
@@ -66,5 +65,7 @@ $restaurants = $adapterObject->getRestaurantsByCIdsAndFilters($cuisineCB, $ratin
 $myRes = new RestaurantController;
 echo $myRes->loadBasicView($restaurants,$color);
 
-$myRes->invoke($ipAddress, $color);
+//Creates a New User Search object with the selected color. Saves to database.
+$object = new NewUserSearch($color);
+$object->save();
 

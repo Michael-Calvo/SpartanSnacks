@@ -1,30 +1,45 @@
 <?php
-require_once 'Database/DataStoreAdapter.php';
+
+require_once '../Database/DataStoreAdapter.php';
 
 //Author: Mike Calvo
-abstract class newUserSearch {
+class NewUserSearch {
 
     protected $userID;
     protected $uuid;
     protected $color;
+    protected $dataStoreAdapter;
 
     /**
      * Creates a user class and generates a uuid for it.
      */
-   public function __construct() {
-       DataStoreAdapter::createConnector();
+    public function __construct($_color) {
+        $dataAdapter = new DataStoreAdapter();
+        $dataAdapter->createConnector();
+        $this->dataStoreAdapter = $dataAdapter;
         $this->setUuid($this->generateUuid());
+        $this->setColor($_color);
+        return $this->dataStoreAdapter;
     }
 
     /**
      * save item to the database
      */
     public function save() {
-        if($this->userID ==0){
-            return DataStoreAdapter::createObject($this);
-        }else{
-            return DataStoreAdapter::updateObject($this);
+
+        if ($this->userID == 0) {
+            return $this->dataStoreAdapter->createObject($this);
+        } else {
+            return $this->dataStoreAdapter->updateObject($this);
         }
+    }
+    
+    /**
+     * Function Deletes a given NewUserSearch object from the database
+     * using a given uuid.
+     */
+    public function delete() {
+        $this->dataStoreAdapter->deleteObject($this->getUuid());
     }
 
     /**
@@ -32,8 +47,9 @@ abstract class newUserSearch {
      *
      * @return type String of UUID
      */
-    protected static function generateUuid() {
-        return com_create_guid();
+    protected function generateUuid() {
+        $_uuid = uniqid();
+        return $_uuid;
     }
 
     //============================== GETTERS ==============================//
@@ -49,7 +65,6 @@ abstract class newUserSearch {
         return $this->color;
     }
 
-
     //============================== SETTER ==============================//
 
     public function setUuid($uuid) {
@@ -60,9 +75,9 @@ abstract class newUserSearch {
         $this->userID = $userID;
     }
 
-    public function setColor() {
-        return $this->Color;
-    }
+    public function setColor($color) {
 
+        $this->color = $color;
+    }
 
 }
