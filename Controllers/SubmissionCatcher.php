@@ -5,13 +5,13 @@
  * from the HomeView to the restaurant controller.
  *
  * @author Taylor,Badesha
- * Updated: 11/02/2019
+ * Updated: 12/3/2019
  */
-require_once'../API/RestaurantApiAdapter.php';
-include 'RestaurantController.php';
+
+require_once '../API/RestaurantAdapter.php';
+require_once 'RestaurantController.php';
 
 $rating = "";
-$distance = "";
 $cuisineCB = null;
 $color = "";
 $ipAddress = "123";
@@ -21,10 +21,9 @@ if (isset($_POST['selectRating'])) {
 
     $rating = $_POST['selectRating'];
 }
-if (isset($_POST['selectDistance'])) {
-    $distance = $_POST['selectDistance'];
-}
+
 if (isset($_POST['checkboxArray'])) {
+
     $cuisineCB = $_POST['checkboxArray'];
 }
 
@@ -34,14 +33,14 @@ if (isset($_POST['selectRating'])) {
     $color = "";
     $ipAddress = "123";
 }
-if (isset($_POST['selectDistance'])) {
-    $distance = $_POST['selectDistance'];
-}
+
 if (isset($_POST['checkboxArray'])) {
+
     $cuisineCB = $_POST['checkboxArray'];
 }
 
 if (isset($_POST['selectedColor'])) {
+
     $color = $_POST['selectedColor'];
 }
 
@@ -58,11 +57,10 @@ if (empty($cuisineCB)) {
           </script>";
 }
 
-//creating an adapter object to look get filtered results
-$forRestaurants = new ZomatoAdapter(new ZomatoApi());
 
-//*an array of restaurants 
-$restaurants = $forRestaurants->getRestaurantsByCIdsAndFilters($cuisineCB, $distance, $rating);
+
+//*an array of restaurants
+$restaurants = $adapterObject->getRestaurantsByCIdsAndFilters($cuisineCB, $rating);
 
 //creates new instance of restaurant controller and load the view using method from RestaurantController
 $myRes = new RestaurantController;

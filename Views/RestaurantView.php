@@ -13,7 +13,7 @@ class RestaurantView {
     /**
      * loads the view containing results of users cuisine and filter choices
 
-     * 
+     *
      * @param array $_restaurantArray - an array of restaurants
      * @param string $_color - a user selected color
 
