@@ -6,7 +6,7 @@
  * @author Isaac Taylor
  *  Updated: 11/02/2019
  */
-class Api {
+class API {
 
     protected const API_KEY = 'cf64d9f9aa1cd2e3b7c5bbf60f896a44';
     //Piedmont Triad
@@ -14,18 +14,10 @@ class Api {
     //Greensboro subzone id & latitude and longitude
     protected const ENTITY_TYPE = "subzone&lat";
     protected const SUBZONE_ID = 133765;
-    protected const LATITUDE = 36.0863000000;
-    protected const LONGITUDE = -79.8273000000;
-    //Maximum radius in miles away from Greensboro
-    protected const MAX_DISTANCE = 20;
     // maximum rating a restaurant can have
     protected const MAX_RATING = 5;
-    // ratio of meters to one mile
-    protected const MILES_AS_METERS = 1609.344;
     protected const CUISINE_URL = 'https://developers.zomato.com/api/v2.1/cuisines?city_id=' . self::CITY_ID . "";
-    //using associative array for enum like behavior for distances in miles
-    protected const DISTANCES = array ("Within 5 miles" => 5, "Within 10 miles" => 10, "Within 15 miles" => 15,
-        "Any Distance" => self::MAX_DISTANCE);
+    protected const RESTAURANT_REQUEST_URL = "https://developers.zomato.com/api/v2.1/search?entity_id=";
     //using associative array for enum like behavior for ratings
     protected const RATINGS = array ("5/5 only" => self::MAX_RATING, "4/5 or better" => 4, "3/5 or better" => 3, "2/5 or better" => 2,
         "Any Rating" => 1);
@@ -124,45 +116,10 @@ class Api {
     }
 
     /**
-     * @return double the latitude of the search area
-     */
-    public static function getLatitude () {
-        return self::LATITUDE;
-    }
-
-    /**
-     * @return double the longitude of the search are
-     */
-    public static function getLongitude () {
-        return self::LONGITUDE;
-    }
-
-    /**
-     * @return int the maximum distance for a given are
-     */
-    public static function maxDistance () {
-        return self::MAX_DISTANCE;
-    }
-
-    /**
      *  @return int the maximum possible rating a restaurant may have
      */
     public static function maxRating () {
         return self::MAX_RATING;
-    }
-
-    /**
-     *  @return double the conversion factor
-     */
-    public static function getMilesAsMeters () {
-        return self::MILES_AS_METERS;
-    }
-
-    /**
-     *  @return array the distances a restaurant may be from the subzone
-     */
-    public static function getDistances () {
-        return self::DISTANCES;
     }
 
     /**
@@ -194,6 +151,14 @@ class Api {
      */
     public static function getCuisineUrl () {
         return self::CUISINE_URL;
+    }
+
+     /**
+     *
+     * @return string the url containing data of restaurant
+     */
+    public static function getRestaurantUrl () {
+        return self::RESTAURANT_REQUEST_URL;
     }
 
 }

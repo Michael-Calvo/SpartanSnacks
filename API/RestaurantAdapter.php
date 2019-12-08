@@ -12,15 +12,15 @@ include_once "APIAdapterInterface.php";
 
 class RestaurantAdapter implements APIAdapterInterface {
 
-    private $zomato;
+    private $RestaurantAPI;
 
     /**
-     * Constructs a zomatoApi object that will be able to attain restaurant data
+     * Constructs a RestaurantAPIApi object that will be able to attain restaurant data
      *
-     * @param ZomatoApi $_zomato
+     * @param ZomatoApi $_RestaurantAPI
      */
-    public function __construct (API $_zomato) {
-        $this->zomato = $_zomato;
+    public function __construct (API $_RestaurantAPI) {
+        $this->RestaurantAPI = $_RestaurantAPI;
     }
 
     /**
@@ -32,7 +32,7 @@ class RestaurantAdapter implements APIAdapterInterface {
         $names = array ();
         $pairs = $this->getCuisineIdPairs ();
         foreach  ($pairs as $item) {
-            array_push ($names,  ($this->zomato->jParser ('cuisine', $item))['cuisine_name']);
+            array_push ($names,  ($this->RestaurantAPI->jParser ('cuisine', $item))['cuisine_name']);
         }
 
         return $names;
@@ -47,7 +47,7 @@ class RestaurantAdapter implements APIAdapterInterface {
         $ids = array ();
         $pairs = $this->getCuisineIdPairs ();
         foreach  ($pairs as $item) {
-            array_push ($ids,  ($this->zomato->jParser ('cuisine', $item))['cuisine_id']);
+            array_push ($ids,  ($this->RestaurantAPI->jParser ('cuisine', $item))['cuisine_id']);
         }
 
         return $ids;
@@ -61,8 +61,8 @@ class RestaurantAdapter implements APIAdapterInterface {
      * @return array an array of cuisines mapped to their ids
      */
     public function getCuisineIdPairs () {
-        $this->zomato->setAndRequest (API::getCuisineUrl());
-        return $this->zomato->jParser ('cuisines', $this->zomato->getContent ());
+        $this->RestaurantAPI->setAndRequest (API::getCuisineUrl());
+        return $this->RestaurantAPI->jParser ('cuisines', $this->RestaurantAPI->getContent ());
     }
 
     /**
@@ -75,23 +75,17 @@ class RestaurantAdapter implements APIAdapterInterface {
      * @return array - an array of restaurants based on the users selections
      * @throws Exception if distance is invalid
      */
-    public function getRestaurantsByCIdsAndFilters ($_arrayOfCuisineIds, $_distance, $_minRating) {
-        //checks to see if the method is recieving a valid distance
-        if (!isset (API::getDistances()["$_distance"])) {
-            throw new Exception ('Invalid distance - review ZomatoApi DISTANCES');
-        }
+    public function getRestaurantsByCIdsAndFilters ($_arrayOfCuisineIds, $_minRating) {
         //construction of request url with filters
-        $urlFirstHalf = "https://developers.zomato.com/api/v2.1/search?entity_id="
+        $urlFirstHalf = API::getRestaurantUrl()
                 . API::getSubzoneId() . "&entity_type=" . API::getEntityType() .
-                "=" . API::getLatitude() . "&lon=" . API::getLongitude() .
-                "&radius=" . $this->milesToMeters (API::getDistances()["$_distance"]) .
                 "&cuisines=";
         //continued construction of request url with cuisines
         $urlSecondHalf = "";
         $firstIteration = true;
         $reccomendedRestaurants = null;
         if (is_array ($_arrayOfCuisineIds)) {
-            //looping through ids and adding them to url query in the format that zomato requires
+            //looping through ids and adding them to url query in the format that RestaurantAPI requires
             foreach ($_arrayOfCuisineIds as $id) {
                 if  ($firstIteration == true) {
                     $urlFirstHalf = $urlFirstHalf . $id . "";
@@ -100,22 +94,12 @@ class RestaurantAdapter implements APIAdapterInterface {
                     $urlSecondHalf = $urlSecondHalf . "%2C" . $id;
                 }
             }
-            $this->zomato->setAndRequest ($urlFirstHalf . $urlSecondHalf);
-            $reccomendedRestaurants = $this->zomato->jParser ('restaurants', $this->zomato->getContent ());
+            $this->RestaurantAPI->setAndRequest ($urlFirstHalf . $urlSecondHalf);
+            $reccomendedRestaurants = $this->RestaurantAPI->jParser ('restaurants', $this->RestaurantAPI->getContent ());
         }
         return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, API::getRatings()["$_minRating"]);
     }
 
-
-    /**
-     * This is a helper function that converts miles to meters.
-     *
-     * @param int $_miles - the number of miles in meters
-     */
-    public function milesToMeters ($_miles) {
-        // number of miles multiplied by converstion factor
-        return $_miles * API::getMilesAsMeters();
-    }
 
     /**
      * This function returns an array of restaurants with ratings of $_minRating or higher.
@@ -145,3 +129,6 @@ class RestaurantAdapter implements APIAdapterInterface {
         return array_reverse (array_slice ($_restaurantArray, $splitPoint));
     }
 }
+
+//creating an adapter object to look get filtered results.
+$adapterObject = new RestaurantAdapter (new API ());

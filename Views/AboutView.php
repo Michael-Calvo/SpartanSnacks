@@ -31,7 +31,7 @@ updated 10/30/2019
                         <div style="width:750px;height:350px;line-height:3em;overflow:auto;padding:5px;background-color:rgba(255, 255, 255, .5);color:#714D03;border:4px double #DEBB07;">
                         This website is a project designed to give UNCG students and Piedmont Triad residents a restaurant
                         recommendation in the Greensboro area based on the type of cuisines they want with the choice to filter
-                        it through ratings and distance. Once you have chosen your desired cuisines and filters,
+                        it through ratings. Once you have chosen your desired cuisines and filters,
                         we will give you up to 20 restaurant recommendations!
                         </div>
                 </center>
