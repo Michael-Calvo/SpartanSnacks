@@ -33,6 +33,14 @@ class NewUserSearch {
             return $this->dataStoreAdapter->updateObject($this);
         }
     }
+    
+    /**
+     * Function Deletes a given NewUserSearch object from the database
+     * using a given uuid.
+     */
+    public function delete() {
+        $this->dataStoreAdapter->deleteObject($this->getUuid());
+    }
 
     /**
      * Uses php's com_create_guid to create a UUID

@@ -2,7 +2,7 @@
 
 //author Mike Calvo, Ike Quigly
 require_once 'Database/mySqlConnector.php';
-include_once 'Models/NewUserSearch.php';
+include_once 'Model/NewUserSearch.php';
 
 class DataStoreAdapter {
 
@@ -23,20 +23,21 @@ class DataStoreAdapter {
 
     //Suppose to read object. Ike creates a generic type object and returns it.
     //Not sure why.
-    public function readObject($_NewUserSearch) {
-        $results = $this->connector->readObject($_NewUserSearch);
-        return $results;
+    public function readObject($_UUID) {
+        $this->connector->readObject($_UUID);
+        
     }
 
     //returns the update object for the sql connector using a
     //get Properties from the data factory, the UUID, and a getDataTable.
     //How to do properties and datatable is still in the air.
     public function updateObject($_NewUserSearch) {
-        return $this->connector->updateObject($_NewUserSearch);
+        $newColor = $_NewUserSearch->getColor();
+        return $this->connector->updateObject($_NewUserSearch,$newColor);
     }
 
-    public function deleteObject($_NewUserSearch) {
-        return $this->connector->updateObject($_NewUserSearch);
+    public function deleteObject($_UUID) {
+        return $this->connector->deleteObject($_UUID);
     }
 
 }
