@@ -35,6 +35,14 @@ class NewUserSearch {
     }
     
     /**
+     * Function to read the object using the uuid
+     */
+    public function readObject(){
+        $this->dataStoreAdapter->readObject($this->getUUID());
+        
+    }
+    
+    /**
      * Function Deletes a given NewUserSearch object from the database
      * using a given uuid.
      */
