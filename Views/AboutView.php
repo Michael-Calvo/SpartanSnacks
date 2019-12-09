@@ -2,7 +2,7 @@
 about and what its purpose is.
 
 authors @ Badesha
-updated 10/30/2019
+updated 12/8/2019
 -->
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,6 @@ updated 10/30/2019
         <div id="wrapper">
             <div id="banner">
             </div>
-
             <!--includes main navigation where users clicks buttons as "home" or "about".-->
             <?php
             include 'MainNavigation.php';

@@ -56,6 +56,7 @@ if (empty($cuisineCB)) {
           </script>";
 }
 
+$adapterObject = new RestaurantAdapter(new ZomatoAPI());
 
 
 //*an array of restaurants

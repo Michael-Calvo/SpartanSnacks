@@ -1,26 +1,26 @@
 <?php
 
-include_once "ZomatoAPI.php";
-include_once "APIAdapterInterface.php";
+require_once "ZomatoAPI.php";
+require_once "APIAdapterInterface.php";
 
 /**
- * This class connects to the restaurantAPI
+ * This class creates  connects to a restaurant API
  *
  * @author Isaac Taylor
- *  Updated: 11/09/2019
+ *  Updated: 12/08/2019
  */
 
 class RestaurantAdapter implements APIAdapterInterface {
 
-    private $RestaurantAPI;
+    private $restaurantAPI;
 
     /**
-     * Constructs a RestaurantAPIApi object that will be able to attain restaurant data
+     * Constructs a Restaurant API object that will be able to attain restaurant data
      *
-     * @param ZomatoApi $_RestaurantAPI
+     * @param object $_restaurantAPI - the current restaurant api that adapter is working with
      */
-    public function __construct (API $_RestaurantAPI) {
-        $this->RestaurantAPI = $_RestaurantAPI;
+    public function __construct ($_restaurantAPI) {
+        $this->restaurantAPI = $_restaurantAPI;
     }
 
     /**
@@ -32,7 +32,7 @@ class RestaurantAdapter implements APIAdapterInterface {
         $names = array ();
         $pairs = $this->getCuisineIdPairs ();
         foreach  ($pairs as $item) {
-            array_push ($names,  ($this->RestaurantAPI->jParser ('cuisine', $item))['cuisine_name']);
+            array_push ($names,  ($this->restaurantAPI->jParser ('cuisine', $item))['cuisine_name']);
         }
 
         return $names;
@@ -47,7 +47,7 @@ class RestaurantAdapter implements APIAdapterInterface {
         $ids = array ();
         $pairs = $this->getCuisineIdPairs ();
         foreach  ($pairs as $item) {
-            array_push ($ids,  ($this->RestaurantAPI->jParser ('cuisine', $item))['cuisine_id']);
+            array_push ($ids,  ($this->restaurantAPI->jParser ('cuisine', $item))['cuisine_id']);
         }
 
         return $ids;
@@ -61,8 +61,8 @@ class RestaurantAdapter implements APIAdapterInterface {
      * @return array an array of cuisines mapped to their ids
      */
     public function getCuisineIdPairs () {
-        $this->RestaurantAPI->setAndRequest (API::getCuisineUrl());
-        return $this->RestaurantAPI->jParser ('cuisines', $this->RestaurantAPI->getContent ());
+        $this->restaurantAPI->setAndRequest ($this->restaurantAPI->getCuisineUrl());
+        return $this->restaurantAPI->jParser ('cuisines', $this->restaurantAPI->getContent ());
     }
 
     /**
@@ -77,8 +77,8 @@ class RestaurantAdapter implements APIAdapterInterface {
      */
     public function getRestaurantsByCIdsAndFilters ($_arrayOfCuisineIds, $_minRating) {
         //construction of request url with filters
-        $urlFirstHalf = API::getRestaurantUrl()
-                . API::getSubzoneId() . "&entity_type=" . API::getEntityType() .
+        $urlFirstHalf = $this->restaurantAPI->getRestaurantUrl()
+                . $this->restaurantAPI->getSubzoneId() . "&entity_type=" . $this->restaurantAPI->getEntityType() .
                 "&cuisines=";
         //continued construction of request url with cuisines
         $urlSecondHalf = "";
@@ -94,10 +94,10 @@ class RestaurantAdapter implements APIAdapterInterface {
                     $urlSecondHalf = $urlSecondHalf . "%2C" . $id;
                 }
             }
-            $this->RestaurantAPI->setAndRequest ($urlFirstHalf . $urlSecondHalf);
-            $reccomendedRestaurants = $this->RestaurantAPI->jParser ('restaurants', $this->RestaurantAPI->getContent ());
+            $this->restaurantAPI->setAndRequest ($urlFirstHalf . $urlSecondHalf);
+            $reccomendedRestaurants = $this->restaurantAPI->jParser ('restaurants', $this->restaurantAPI->getContent ());
         }
-        return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, API::getRatings()["$_minRating"]);
+        return $this->getRestaurantsByAvgRating ($reccomendedRestaurants, $this->restaurantAPI->getRatings()["$_minRating"]);
     }
 
 
@@ -129,6 +129,3 @@ class RestaurantAdapter implements APIAdapterInterface {
         return array_reverse (array_slice ($_restaurantArray, $splitPoint));
     }
 }
-
-//creating an adapter object to look get filtered results.
-$adapterObject = new RestaurantAdapter (new API ());

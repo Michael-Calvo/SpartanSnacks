@@ -8,3 +8,4 @@ Updated 10/25/2019
 <?php
 $title = "About";
 include 'AboutView.php';
+
