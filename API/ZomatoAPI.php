@@ -4,26 +4,26 @@
  * This is an API that works through the Zomato service.
  *
  * @author Isaac Taylor
- *  Updated: 11/02/2019
+ *  Updated: 12/08/2019
  */
-class API {
+class ZomatoAPI {
 
-    protected const API_KEY = 'cf64d9f9aa1cd2e3b7c5bbf60f896a44';
+    private const API_KEY = 'cf64d9f9aa1cd2e3b7c5bbf60f896a44';
     //Piedmont Triad
-    protected const CITY_ID = 904;
+    private const CITY_ID = 904;
     //Greensboro subzone id & latitude and longitude
-    protected const ENTITY_TYPE = "subzone&lat";
-    protected const SUBZONE_ID = 133765;
+    private const ENTITY_TYPE = "subzone&lat";
+    private const SUBZONE_ID = 133765;
     // maximum rating a restaurant can have
-    protected const MAX_RATING = 5;
-    protected const CUISINE_URL = 'https://developers.zomato.com/api/v2.1/cuisines?city_id=' . self::CITY_ID . "";
-    protected const RESTAURANT_REQUEST_URL = "https://developers.zomato.com/api/v2.1/search?entity_id=";
+    private const MAX_RATING = 5;
+    private const CUISINE_URL = 'https://developers.zomato.com/api/v2.1/cuisines?city_id=' . self::CITY_ID . "";
+    private const RESTAURANT_REQUEST_URL = "https://developers.zomato.com/api/v2.1/search?entity_id=";
     //using associative array for enum like behavior for ratings
-    protected const RATINGS = array ("5/5 only" => self::MAX_RATING, "4/5 or better" => 4, "3/5 or better" => 3, "2/5 or better" => 2,
+    private const RATINGS = array ("5/5 only" => self::MAX_RATING, "4/5 or better" => 4, "3/5 or better" => 3, "2/5 or better" => 2,
         "Any Rating" => 1);
 
-    protected static $requestUrl;
-    protected static $content;
+    private static $requestUrl;
+    private static $content;
 
     /**
      * This is the constructor for a ZomatoAPI
@@ -38,6 +38,33 @@ class API {
         } else {
             throw new Exception ("Empty Request Url and/or Empty Api Key");
         }
+    }
+
+    /**
+     * This function recursively finds and returns a value by key in an array
+     *
+     * @param string $_key - the key
+     * @param array $_content  - an array of restaurant data
+     * @return array|string - the value if found
+     */
+    public function jParser ($_key, $_content) {
+        foreach  ($_content as $currentKey => $value) {
+            if  ($currentKey == $_key) {
+                return $value;
+            } else if  (is_array ($value)) {
+                 self::jParser ($_key, $value);
+            }
+        }
+    }
+
+    /**
+     * This function sets the data request url
+     *
+     * @param string $_url - the url data will be taken from
+     */
+    public function setAndRequest ($_url) {
+        self::$requestUrl = $_url;
+        self::requestInfo ();
     }
 
     /**
@@ -58,74 +85,47 @@ class API {
         self::$content = json_decode ($result, true);
     }
 
-    /**
-     * This function recursively finds and returns a value by key in an array
-     *
-     * @param string $_key - the key
-     * @param array $_content  - an array of restaurant data
-     * @return array|string - the value if found
-     */
-    public static function jParser ($_key, $_content) {
-        foreach  ($_content as $currentKey => $value) {
-            if  ($currentKey == $_key) {
-                return $value;
-            } else if  (is_array ($value)) {
-                 self::jParser ($_key, $value);
-            }
-        }
-    }
-
-    /**
-     * This function sets the data request url
-     *
-     * @param string $_url - the url data will be taken from
-     */
-    public static function setAndRequest ($_url) {
-        self::$requestUrl = $_url;
-        self::requestInfo ();
-    }
-
     //========================= GETTERS ============================================
 
     /**
      * @return string the api key
      */
-    public static function getApiKey () {
+    public function getApiKey () {
         return self::API_KEY;
     }
 
     /**
      * @return int the city id
      */
-    public static function getCityId () {
+    public function getCityId () {
         return self::CITY_ID;
     }
 
     /**
      * @return string Zomato entity type
      */
-    public static function getEntityType () {
+    public function getEntityType () {
         return self::ENTITY_TYPE;
     }
 
     /**
      * @return int the zomato subzone id
      */
-    public static function getSubzoneId () {
+    public function getSubzoneId () {
         return self::SUBZONE_ID;
     }
 
     /**
      *  @return int the maximum possible rating a restaurant may have
      */
-    public static function maxRating () {
+    public function maxRating () {
         return self::MAX_RATING;
     }
 
     /**
      *  @return array the ratings of a user may choose
      */
-    public static function getRatings () {
+    public function getRatings () {
         return self::RATINGS;
     }
 
@@ -133,7 +133,7 @@ class API {
      *
      * @return string the request url
      */
-    public static function getRequestUrl () {
+    public function getRequestUrl () {
         return self::$requestUrl;
     }
 
@@ -141,7 +141,7 @@ class API {
      *
      * @return array raw json Zomato data as an array
      */
-    public static function getContent () {
+    public function getContent () {
         return self::$content;
     }
 
@@ -149,7 +149,7 @@ class API {
      *
      * @return string the url containing data of cuisine types
      */
-    public static function getCuisineUrl () {
+    public function getCuisineUrl () {
         return self::CUISINE_URL;
     }
 
@@ -157,7 +157,7 @@ class API {
      *
      * @return string the url containing data of restaurant
      */
-    public static function getRestaurantUrl () {
+    public function getRestaurantUrl () {
         return self::RESTAURANT_REQUEST_URL;
     }
 

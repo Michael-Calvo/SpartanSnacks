@@ -66,7 +66,7 @@ author @ Badesha, Taylor, Calvo(Small Change)
             </div>
             <div id="sidebar" style="border:4px double #000000;">
              <?php
-             include 'EventView.php';
+             include 'Eventviewer.php';
              ?>
             </div>
             <?php

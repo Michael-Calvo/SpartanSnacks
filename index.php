@@ -1,15 +1,17 @@
-<<!--Index file which serves as the homepage of the website.
+<!--Index file which serves as the homepage of the website.
 authors @Badesha,Taylor
-updated 10/25/2019
+Updated 10/25/2019
 -->
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <?php
-$homeUrl = '/index.php';
+require_once 'Settings/Settings.php';
 require_once 'API/RestaurantAdapter.php';
+$homeUrl = '/index.php';
 $title = "SpartanSnacks - Restaurant Finder";
 $content = "Welcome to SpartanSnacks!";
+$adapterObject = new RestaurantAdapter(new ZomatoAPI());
 //array of cusine names for displaying in HomeView
 $cusNames = $adapterObject->getCuisineNames();
 //array of cusine ids for setting html checkbox values
